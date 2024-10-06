@@ -1,4 +1,5 @@
-# Basic things we want for the website :
+TRIVIA GAME WEBSITE - 276 : 
+Basic things we want for the website :
 • Account creation and logging in with ways to personalize your account (display picture the only idea discussed)
 • Game Creation
 • Game Playing (either the ones created by the developers themselves or the ones a user creates)
