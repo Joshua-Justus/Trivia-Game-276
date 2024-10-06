@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Trivia Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+        /* Style for the sidebar */
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #0077B6; /* Deep Ocean Blue */
+            padding-top: 20px;
+            position: fixed;
+        }
+        .sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            margin: 5px 0;
+        }
+        .sidebar a:hover {
+            background-color: #3498DB; /* Light Azure */
+        }
+        .active {
+            background-color: #00AEEF; /* Bright Sky Blue */
+        }
+        /* Main content styling */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        header {
+            background-color: #FF5349;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        footer {
+            background-color: #FF5349;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: calc(100% - 250px);
+            bottom: 0;
+            margin-left: 250px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a class="active" href="#">Home Page</a>
+        <a href="#quizzes">Quizzes</a>
+        <a href="#create">Create a Quiz</a>
+        <a href="#about">About</a>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Welcome to My Trivia Website</h1>
+        </header>
+        <div class="container">
+            <h2>Home Page</h2>
+            <p>This is the homepage of my trivia website. Feel free to explore different quizzes, create your own, and learn more about the platform!</p>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 My Trivia Website</p>
+    </footer> 
+</body>
+</html>
