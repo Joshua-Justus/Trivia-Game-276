@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+}
+/* Style for the sidebar */
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: #A6192E; /* SFU Dark Red */
+    padding-top: 20px;
+    position: fixed;
+}
+.sidebar a {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    margin: 5px 0;
+}
+.sidebar a:hover {
+    background-color: #CC0633; /* SFU Light Red */
+}
+.active {
+    background-color: #A6192E; /* SFU Dark Red */
+}
+/* Main content styling */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+}
+header {
+    background-color: #A6192E; /* SFU Dark Red */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+/*
+footer {
+    background-color: #A6192E; 
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: calc(100% - 250px);
+    bottom: 0;
+    margin-left: 250px;
+}
+*/
