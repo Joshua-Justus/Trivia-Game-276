@@ -52,26 +52,15 @@ footer {
 }
 */
 
+/* Additional specific styles for create_quiz.html */
+/* Container styles */
 .container {
     max-width: 800px; /* Limit the width of the container */
     margin: 0 auto; /* Center align the container */
     padding: 20px;
 }
 
-.question-group {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #f2f2f2; /* Light gray background for question groups */
-    border-radius: 8px; /* Rounded corners */
-    border: 1px solid #ccc; /* Light border */
-}
-
-.question-group label {
-    font-weight: bold; /* Bold labels for clarity */
-    display: block;
-    margin-bottom: 5px;
-}
-
+/* Form elements styling */
 .quiz-form input,
 .quiz-form textarea {
     width: 100%;
@@ -82,7 +71,28 @@ footer {
     font-size: 16px; /* Slightly larger font for readability */
 }
 
-.quiz-form button {
+.quiz-form label {
+    font-weight: bold; /* Bold labels for clarity */
+    margin-bottom: 5px;
+    display: block; /* Ensure labels are block elements for spacing */
+}
+
+.question-group {
+    margin-bottom: 20px;
+    padding: 45px;
+    background-color: #f2f2f2; /* Light gray background for question groups */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #ccc; /* Light border */
+}
+
+/* Styling for question and answer inputs */
+.question-group input {
+    margin-bottom: 10px; /* Space between inputs */
+}
+
+/* Quiz button styles */
+.quiz-form button,
+.add-quiz-button {
     background-color: #A6192E; /* SFU Dark Red */
     color: white;
     padding: 10px 15px;
@@ -91,45 +101,10 @@ footer {
     cursor: pointer;
     font-size: 16px; /* Consistent button font size */
     width: 100%; /* Full-width button */
+    margin-top: 10px; /* Space above buttons */
 }
 
-.quiz-form button:hover {
-    background-color: #CC0633; /* SFU Light Red */
-}
-
-/* Recent quizzes styling */
-.recent-quizzes {
-    background-color: #f9f9f9; /* Light background for recent quizzes */
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px; /* Space between the form and recent quizzes */
-}
-
-.recent-quizzes h2 {
-    margin-top: 0;
-    font-size: 24px; /* Larger font for headings */
-}
-
-.quiz-item {
-    background-color: #e7f3fe; /* Light blue background for quiz items */
-    border: 1px solid #0077B6; /* Add a border */
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 4px;
-}
-
-.add-quiz-button {
-    background-color: #28a745; /* Green color for add button */
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-    width: 100%; /* Full-width button */
-    font-size: 16px; /* Consistent button font size */
-}
-
+.quiz-form button:hover,
 .add-quiz-button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #CC0633; /* SFU Light Red */
 }
