@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia 276 - Login</title>
+    <link rel="stylesheet" href="static/main.css"> <!-- Link to external CSS file -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/" title="">Home</a>
+        <a href="/quizzes" title="">Quizzes</a>
+        <a href="/create_quiz" title="">Create a Quiz</a>
+        <a class="active" href="/login" title="">Log In</a>
+        <a href="/signup" title="">Create an Account</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Log In</h1>
+        </header>
+
+        <div class="container">
+            <form action="/login" method="POST">
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" name="username" required><br><br>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" required><br><br>
+                <input type="submit" value="Log In">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

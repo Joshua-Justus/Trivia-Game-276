@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia 276 - Sign Up</title>
+    <link rel="stylesheet" href="static/main.css"> <!-- Link to external CSS file -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/" title="">Home</a>
+        <a href="/quizzes" title="">Quizzes</a>
+        <a href="/create_quiz" title="">Create a Quiz</a>
+        <a href="/login" title="">Log In</a>
+        <a class="active" href="/signup" title="">Create an Account</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Create an Account</h1>
+        </header>
+
+        <div class="container">
+            <form action="/signup" method="POST">
+                <label for="signup-username">Username:</label>
+                <input type="text" id="signup-username" name="username" required><br><br>
+                <label for="signup-email">Email:</label>
+                <input type="email" id="signup-email" name="email" required><br><br>
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" name="password" required><br><br>
+                <label for="signup-confirm-password">Confirm Password:</label>
+                <input type="password" id="signup-confirm-password" name="confirm_password" required><br><br>
+                <input type="submit" value="Create Account">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
