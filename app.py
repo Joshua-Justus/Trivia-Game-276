@@ -22,6 +22,6 @@ def home():
 @app.route("/quizzes")
 def quiz():
     return render_template('quizzes.html')
-
+  
 if __name__ == "__main__":
     app.run(debug=True)
