@@ -9,6 +9,7 @@ db = SQLAlchemy()
 
 # Define the Quiz model to store basic quiz information.
 class Quiz(db.Model):
+    __tablename__ = 'quiz'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=False)
@@ -16,6 +17,7 @@ class Quiz(db.Model):
 
 # Define the Question model to store questions for each quiz.
 class Question(db.Model):
+    __tablename__ = 'question'
     id = db.Column(db.Integer, primary_key=True)
     quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'), nullable=False)
     question_text = db.Column(db.String(255), nullable=False)
@@ -25,10 +27,15 @@ class Question(db.Model):
     option4 = db.Column(db.String(255), nullable=False)
     correct_answer = db.Column(db.String(255), nullable=False)
 
-# Define the route to render the create quiz page.
+# Define the route to render the base (home) page.
 @create_quiz_bp.route('/')
 def home():
     return render_template('base.html')
+
+# Define the route to render the create quiz page.
+@create_quiz_bp.route('/create_quiz', methods=['GET'])
+def create_quiz_page():
+    return render_template('create_quiz.html')
 
 # Define the route to handle quiz creation.
 @create_quiz_bp.route('/create_quiz', methods=['POST'])
