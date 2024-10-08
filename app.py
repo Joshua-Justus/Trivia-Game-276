@@ -8,6 +8,10 @@ def home():
 @app.route("/create_quiz")
 def create_quiz():
     return render_template('create_quiz.html')
+  
+@app.route("/quizzes")
+def quiz():
+    return render_template('quizzes.html')
 
 if __name__ == "__main__":
   app.run()

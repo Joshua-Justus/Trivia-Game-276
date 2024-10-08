@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quizzes - Trivia 276</title>
+    <link rel="stylesheet" href="static/main.css"> <!-- Link to external CSS file -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/" title="">Home</a>
+        <a class="active" href="/quizzes" title="">Quizzes</a>
+        <a href="/create_quiz" title="">Create a Quiz</a>
+        <a href="/login" title="">Log In/Create an Account</a>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Available Quizzes</h1>
+        </header>
+        <div class="container">
+            <div class="quiz-list">
+                <div class="quiz-item">
+                    <h2>Quiz Title 1</h2>
+                    <p>Description of Quiz 1.</p>
+                    <a href="/play_quiz/1" class="btn">Play Quiz</a>
+                </div>
+                <div class="quiz-item">
+                    <h2>Quiz Title 2</h2>
+                    <p>Description of Quiz 2.</p>
+                    <a href="/play_quiz/2" class="btn">Play Quiz</a>
+                </div>
+                <!-- Add more quizzes as needed -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer
+    <footer>
+        <p>Trivia 276</p>
+    </footer> -->
+</body>
+</html>
