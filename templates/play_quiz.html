@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Play Quiz - Trivia 276</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> <!-- Link to external CSS file -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/" title="">Home</a>
+        <a class="active" href="/quizzes" title="">Quizzes</a>
+        <a href="/create_quiz" title="">Create a Quiz</a>
+        <a href="/login" title="">Log In</a>
+        <a href="/signup" title="">Create an Account</a>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>{{ quiz.title }}</h1>
+        </header>
+        <div class="quiz-container">
+            <div class="question-box">
+                <h2>Question {{ current_question + 1 }}:</h2>
+                <p>{{ quiz.questions[current_question]['text'] }}</p>
+                <ul class="options">
+                    {% for answer in quiz.questions[current_question]['answers'] %}
+                    <li><button class="option-btn">{{ answer }}</button></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="next-question">
+                <form action="{{ url_for('play_quiz', quiz_id=quiz.id) }}" method="GET">
+                    <input type="hidden" name="question_index" value="{{ current_question + 1 }}">
+                    <button type="submit" class="next-btn">Next Question</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
