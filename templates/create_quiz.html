@@ -87,9 +87,13 @@
     <div class="sidebar">
         <a href="/">Home</a>
         <a href="/quizzes">Quizzes</a>
-        <a class="active" href="#create">Create a Quiz</a>
-        <a href="/login" title="">Log In</a>
-        <a href="/signup" title="">Create an Account</a>
+        {% if 'user_id' in session %}
+            <a href="/create_quiz" title="">Create a Quiz</a>
+            <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
+        {% else %}
+            <a href="/login" title="">Login</a>
+            <a href="/signup" title="">Create an Account</a>
+        {% endif %}
     </div>
     <!-- Main Content -->
     <div class="main-content">
