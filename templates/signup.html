@@ -23,13 +23,22 @@
         <header>
             <h1>Create an Account</h1>
         </header>
+        
+        <!-- Flash message section: Shows what went right/wrong with the sign up. -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
 
         <div class="container">
             <form action="/signup" method="POST">
                 <label for="signup-username">Username:</label>
                 <input type="text" id="signup-username" name="username" required><br><br>
-                <label for="signup-email">Email:</label>
-                <input type="email" id="signup-email" name="email" required><br><br>
                 <label for="signup-password">Password:</label>
                 <input type="password" id="signup-password" name="password" required><br><br>
                 <label for="signup-confirm-password">Confirm Password:</label>
