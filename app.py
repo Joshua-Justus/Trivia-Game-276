@@ -23,6 +23,32 @@ def home():
 def quiz():
     return render_template('quizzes.html')
 
+# Sample quiz data for testing
+sample_quiz = {
+    'id': 1,
+    'title': 'General Knowledge Quiz',
+    'questions': [
+        {'text': 'What is the capital of France?', 'answers': ['Paris', 'London', 'Rome', 'Berlin'], 'correct': 'Paris'},
+        {'text': 'What is 2 + 2?', 'answers': ['3', '4', '5', '6'], 'correct': '4'},
+        {'text': 'What is the largest ocean on Earth?', 'answers': ['Indian Ocean', 'Atlantic Ocean', 'Arctic Ocean', 'Pacific Ocean'], 'correct': 'Pacific Ocean'},
+    ]
+}
+
+@app.route("/play_quiz/<int:quiz_id>")
+def play_quiz(quiz_id):
+    quiz = sample_quiz if quiz_id == 1 else None
+    if not quiz:
+        return redirect(url_for('quizzes'))
+
+    question_index = request.args.get('question_index', default=0, type=int)
+
+    if question_index >= len(quiz['questions']):
+        return redirect(url_for('quizzes'))  # Redirect after finishing the quiz
+
+    return render_template('play_quiz.html', quiz=quiz, current_question=question_index)
+
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
