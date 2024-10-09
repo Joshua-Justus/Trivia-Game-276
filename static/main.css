@@ -17,6 +17,25 @@ body {
     position: fixed;
     box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
     transition: width 0.3s; /* Smooth transition for sidebar */
+    text-align: center; /* Center-align the text */
+}
+
+h1 {
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: bold; /* Bold */
+    text-transform: uppercase; /* Uppercase */
+    letter-spacing: 1px; /* Letter spacing */
+    margin-bottom: 10px; /* Space below */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
+    /* Remove underline (not applicable to h1 directly) */
+}
+
+h2 {
+    font-size: 1.5rem; /* Slightly larger */
+    font-weight: 600; /* Semi-bold */
+    margin-top: 0; /* No top margin */
+    color: #eee9e9; /* Retain the existing color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
 }
 
 .sidebar:hover {
@@ -25,7 +44,7 @@ body {
 
 .sidebar a {
     padding: 15px;
-    text-decoration: none;
+    text-decoration: none; /* Ensure no underline */
     font-size: 18px;
     color: white;
     display: block;
@@ -45,7 +64,7 @@ body {
 
 /* Main content styling */
 .main-content {
-    margin-left: 250px;
+    margin-left: 250px; /* Keeps the main content next to the sidebar */
     padding: 20px;
     flex-grow: 1;
     animation: fadeIn 0.5s; /* Fade-in animation for main content */
@@ -57,13 +76,16 @@ body {
 }
 
 header {
-    background-color: #A6192E; /* SFU Dark Red */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center align items horizontally */
+    align-items: center; /* Center align items vertically */
+    background: linear-gradient(to right, #A6192E, #CC0633); /* SFU Dark Red */
     color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    padding: 20px 0; /* Padding for top and bottom */
     border-radius: 5px; /* Rounded corners */
     margin-bottom: 20px; /* Space below header */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for header */
+    width: 100%; /* Full width */
 }
 
 /* play_quiz container styling */
