@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
-from create_quiz import create_quiz_bp, db  # Import the blueprint and the database instance
+from flask import Flask, redirect, render_template, request, url_for
+
+from create_quiz import (  # Import the blueprint and the database instance
+    create_quiz_bp, db)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'  # Database configuration
