@@ -38,28 +38,64 @@ h2 {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
 }
 
-.sidebar:hover {
-    width: 280px; /* Expands on hover */
+/* Style for the sidebar */
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: #A6192E; /* SFU Dark Red */
+    padding-top: 20px;
+    position: fixed;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    transition: width 0.3s; /* Smooth transition for sidebar */
+    text-align: center; /* Center-align the text */
 }
 
+/* Sidebar hover effect */
+.sidebar:hover {
+    width: 280px; /* Expands on hover */
+    background-color: #9B0E26; /* Slightly darker red on hover */
+}
+
+/* Sidebar link styles */
 .sidebar a {
-    padding: 15px;
+    padding: 15px 20px; /* Increased padding for a more button-like appearance */
     text-decoration: none; /* Ensure no underline */
     font-size: 18px;
     color: white;
     display: block;
     margin: 5px 0;
-    border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+    border-radius: 8px; /* More rounded corners */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transition */
 }
 
+/* Sidebar link hover effect */
 .sidebar a:hover {
     background-color: #CC0633; /* SFU Light Red */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: translateY(-2px); /* Slightly lift on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
+/* Active link styling */
 .active {
     background-color: #A6192E; /* SFU Dark Red */
+    font-weight: bold; /* Bold for active link */
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2); /* Inner shadow effect */
+}
+
+/* Responsive sidebar styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px; /* Adjusted width for mobile */
+    }
+
+    .sidebar a {
+        font-size: 16px; /* Smaller font for mobile */
+        padding: 10px; /* Less padding on mobile */
+    }
+
+    .sidebar:hover {
+        width: 120px; /* Expanded width on hover for mobile */
+    }
 }
 
 /* Main content styling */
@@ -102,13 +138,18 @@ header {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); /* Deep shadow on hover */
 }
 
+.quiz-title {
+    color: #0b0b0b; /* Change this to the desired color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Optional: Add a shadow for effect */
+}
+
 .question-box {
     margin-bottom: 20px;
 }
 
 h1, h2 {
     margin-top: 0;
-    color: #eee9e9; /* Darker text for headings */
+    color: #f0e9e9; /* Darker text for headings */
 }
 
 /* Options list styling */
