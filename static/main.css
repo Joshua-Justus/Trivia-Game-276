@@ -1,3 +1,4 @@
+/* Base styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,6 +6,7 @@ body {
     display: flex;
     min-height: 100vh;
 }
+
 /* Style for the sidebar */
 .sidebar {
     height: 100vh;
@@ -27,6 +29,7 @@ body {
 .active {
     background-color: #A6192E; /* SFU Dark Red */
 }
+
 /* Main content styling */
 .main-content {
     margin-left: 250px;
@@ -51,6 +54,93 @@ footer {
     margin-left: 250px;
 }
 */
+
+/* play_quiz container styling */
+.quiz-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-box {
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+/* Options list styling */
+.options {
+    list-style-type: none;
+    padding: 0;
+}
+
+.options li {
+    margin: 10px 0;
+}
+
+/* Styling for answer buttons */
+.option-btn {
+    background-color: #FFCC00;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%; /* Ensures button spans the width of the list item */
+    text-align: left;
+}
+
+.option-btn:hover {
+    background-color: #FFA500;
+}
+
+/* Styling for the Next Question button */
+.next-question {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.next-btn {
+    background-color: #28A745;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.next-btn:hover {
+    background-color: #218838;
+}
+
+
+/* Mobile-friendly styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100px;
+    }
+
+    .main-content {
+        margin-left: 100px;
+    }
+
+    .option-btn {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    .next-btn {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+}
+
 
 /* Additional specific styles for create_quiz.html */
 /* Container styles */
