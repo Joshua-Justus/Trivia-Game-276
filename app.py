@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'  # Database configur
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Set a secret key for Flask. Helps for the flash, the updating messages.
-app.secret_key = 'cmpt_275_trivia'
+app.secret_key = 'cmpt_276_trivia'
 
 # Initialize the database with the app.
 db.init_app(app)
