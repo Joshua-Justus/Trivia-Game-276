@@ -5,6 +5,7 @@ body {
     padding: 0;
     display: flex;
     min-height: 100vh;
+    background-color: #f8f9fa; /* Light background for contrast */
 }
 
 /* Style for the sidebar */
@@ -14,7 +15,14 @@ body {
     background-color: #A6192E; /* SFU Dark Red */
     padding-top: 20px;
     position: fixed;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    transition: width 0.3s; /* Smooth transition for sidebar */
 }
+
+.sidebar:hover {
+    width: 280px; /* Expands on hover */
+}
+
 .sidebar a {
     padding: 15px;
     text-decoration: none;
@@ -22,11 +30,15 @@ body {
     color: white;
     display: block;
     margin: 5px 0;
-    border-radius: 4px; /* Added rounded corners */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
 }
+
 .sidebar a:hover {
     background-color: #CC0633; /* SFU Light Red */
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
+
 .active {
     background-color: #A6192E; /* SFU Dark Red */
 }
@@ -36,14 +48,22 @@ body {
     margin-left: 250px;
     padding: 20px;
     flex-grow: 1;
+    animation: fadeIn 0.5s; /* Fade-in animation for main content */
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 header {
     background-color: #A6192E; /* SFU Dark Red */
     color: #fff;
     padding: 10px 0;
     text-align: center;
-    border-radius: 5px; /* Added rounded corners */
+    border-radius: 5px; /* Rounded corners */
     margin-bottom: 20px; /* Space below header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for header */
 }
 
 /* play_quiz container styling */
@@ -51,7 +71,13 @@ header {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition effects */
+}
+
+.quiz-container:hover {
+    transform: translateY(-2px); /* Slightly lift on hover */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); /* Deep shadow on hover */
 }
 
 .question-box {
@@ -60,6 +86,7 @@ header {
 
 h1, h2 {
     margin-top: 0;
+    color: #eee9e9; /* Darker text for headings */
 }
 
 /* Options list styling */
@@ -80,13 +107,15 @@ h1, h2 {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s; /* Transition for scaling */
     width: 100%; /* Ensures button spans the width of the list item */
     text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
 }
 
 .option-btn:hover {
     background-color: #FFA500;
+    transform: translateY(-2px); /* Lift effect on hover */
 }
 
 /* Styling for the Next Question button */
@@ -103,11 +132,13 @@ h1, h2 {
     color: white;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
 }
 
 .next-btn:hover {
     background-color: #218838;
+    transform: translateY(-2px); /* Lift effect on hover */
 }
 
 /* Mobile-friendly styles */
@@ -148,6 +179,12 @@ h1, h2 {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px; /* Slightly larger font for readability */
+    transition: border-color 0.3s; /* Transition for border color */
+}
+
+.quiz-form input:focus,
+.quiz-form textarea:focus {
+    border-color: #A6192E; /* Highlight border color on focus */
 }
 
 .quiz-form label {
@@ -158,10 +195,15 @@ h1, h2 {
 
 .question-group {
     margin-bottom: 20px;
-    padding: 20px; /* Reduced padding for a cleaner look */
+    padding: 20px; /* Adjusted padding for a cleaner look */
     background-color: #f2f2f2; /* Light gray background for question groups */
     border-radius: 8px; /* Rounded corners */
     border: 1px solid #ccc; /* Light border */
+    transition: background-color 0.3s; /* Transition for background */
+}
+
+.question-group:hover {
+    background-color: #e0e0e0; /* Slight darken on hover */
 }
 
 /* Styling for question and answer inputs */
@@ -181,9 +223,11 @@ h1, h2 {
     font-size: 16px; /* Consistent button font size */
     width: 100%; /* Full-width button */
     margin-top: 10px; /* Space above buttons */
+    transition: background-color 0.3s, transform 0.2s; /* Transition effects */
 }
 
 .quiz-form button:hover,
 .add-quiz-button:hover {
     background-color: #CC0633; /* SFU Light Red */
+    transform: translateY(-2px); /* Lift effect on hover */
 }

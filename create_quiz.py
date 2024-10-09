@@ -1,11 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from models import db
+from user import User
 
 # Create a Blueprint for quiz-related routes.
 create_quiz_bp = Blueprint('create_quiz_bp', __name__)
-
-# Initialize SQLAlchemy here; we'll link it to the app in `app.py`.
-db = SQLAlchemy()
 
 # Define the Quiz model to store basic quiz information.
 class Quiz(db.Model):
@@ -40,6 +38,12 @@ def create_quiz_page():
 # Define the route to handle quiz creation.
 @create_quiz_bp.route('/create_quiz', methods=['POST'])
 def create_quiz():
+    # Check if the user is logged in
+    if "user_id" not in session:
+        flash("You must be logged in to create a quiz.")
+        # Redirects them to the login page
+        return redirect(url_for("login"))
+        
     # Retrieve the data from the form.
     title = request.form.get('title')
     description = request.form.get('description')
