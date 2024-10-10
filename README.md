@@ -8,6 +8,12 @@ Features we want for Iteration 1 :
 
 • logging in for users to create games
 
+Features completed for Iteration 1 : 
+
+• logging in for users (very first stages of implementation)
+
+• each view in relation to the trivia games are made
+
 What went right?
 
 • the views and styling are slightly consistent
@@ -29,3 +35,7 @@ Things to improve :
 • our understanding of github and git commands and what they do
 
 • time management and planning
+
+Running Instructions :
+
+Run the command "python app.py".
