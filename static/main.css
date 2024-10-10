@@ -1,18 +1,18 @@
 /* Base styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     min-height: 100vh;
-    background-color: #f8f9fa; /* Light background for contrast */
+    background-color: #f0f4f8; /* Soft light background for contrast */
 }
 
 /* Style for the sidebar */
 .sidebar {
     height: 100vh;
     width: 250px;
-    background-color: #A6192E; /* SFU Dark Red */
+    background: linear-gradient(180deg, #A6192E 0%, #9B0E26 100%); /* Gradient for sidebar */
     padding-top: 20px;
     position: fixed;
     box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
@@ -20,40 +20,22 @@ body {
     text-align: center; /* Center-align the text */
 }
 
+/* Header styles */
 h1 {
     font-size: 2.5rem; /* Increased font size */
     font-weight: bold; /* Bold */
     text-transform: uppercase; /* Uppercase */
     letter-spacing: 1px; /* Letter spacing */
     margin-bottom: 10px; /* Space below */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
-    /* Remove underline (not applicable to h1 directly) */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Text shadow */
 }
 
-h2 {
-    font-size: 1.5rem; /* Slightly larger */
+/* Quiz titles */
+.quiz-title {
+    font-size: 1.8rem; /* Slightly larger */
     font-weight: 600; /* Semi-bold */
     margin-top: 0; /* No top margin */
-    color: #eee9e9; /* Retain the existing color */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
-}
-
-/* Style for the sidebar */
-.sidebar {
-    height: 100vh;
-    width: 250px;
-    background-color: #A6192E; /* SFU Dark Red */
-    padding-top: 20px;
-    position: fixed;
-    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
-    transition: width 0.3s; /* Smooth transition for sidebar */
-    text-align: center; /* Center-align the text */
-}
-
-/* Sidebar hover effect */
-.sidebar:hover {
-    width: 280px; /* Expands on hover */
-    background-color: #9B0E26; /* Slightly darker red on hover */
+    color: #333; /* Darker color for visibility */
 }
 
 /* Sidebar link styles */
@@ -68,11 +50,11 @@ h2 {
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transition */
 }
 
-/* Sidebar link hover effect */
+/* Sidebar hover effect */
 .sidebar a:hover {
     background-color: #CC0633; /* SFU Light Red */
     transform: translateY(-2px); /* Slightly lift on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 /* Active link styling */
@@ -106,11 +88,13 @@ h2 {
     animation: fadeIn 0.5s; /* Fade-in animation for main content */
 }
 
+/* Fade in animation */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+/* Header styles */
 header {
     display: flex; /* Use flexbox */
     justify-content: center; /* Center align items horizontally */
@@ -120,88 +104,115 @@ header {
     padding: 20px 0; /* Padding for top and bottom */
     border-radius: 5px; /* Rounded corners */
     margin-bottom: 20px; /* Space below header */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for header */
     width: 100%; /* Full width */
 }
 
-/* play_quiz container styling */
-.quiz-container {
-    background-color: white;
+/* Quiz item styling */
+.quiz-item {
+    background-color: #fff; /* White background for quiz items */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for quiz items */
+    margin-bottom: 20px; /* Space between quiz items */
     transition: transform 0.3s, box-shadow 0.3s; /* Transition effects */
 }
 
-.quiz-container:hover {
-    transform: translateY(-2px); /* Slightly lift on hover */
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); /* Deep shadow on hover */
+.quiz-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Deep shadow on hover */
 }
 
-.quiz-title {
-    color: #0b0b0b; /* Change this to the desired color */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Optional: Add a shadow for effect */
+/* Quiz container styling */
+.quiz-container {
+    background-color: #fff; /* White background for quiz */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding around quiz content */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    margin: 20px auto; /* Center the container */
+    max-width: 600px; /* Maximum width for larger screens */
 }
 
+/* Question box styling */
 .question-box {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Space below the question */
 }
 
-h1, h2 {
-    margin-top: 0;
-    color: #f0e9e9; /* Darker text for headings */
+.question-box h2 {
+    font-size: 24px; /* Larger font size for question */
 }
 
-/* Options list styling */
+/* Options styling */
 .options {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
 }
 
-.options li {
-    margin: 10px 0;
-}
-
-/* Styling for answer buttons */
 .option-btn {
-    background-color: #FFCC00;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s; /* Transition for scaling */
-    width: 100%; /* Ensures button spans the width of the list item */
-    text-align: left;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
+    background-color: #007BFF; /* Primary button color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners for buttons */
+    padding: 15px; /* Padding inside buttons */
+    font-size: 18px; /* Button text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    margin: 10px 0; /* Space between buttons */
+    width: 100%; /* Full width for buttons */
 }
 
 .option-btn:hover {
-    background-color: #FFA500;
-    transform: translateY(-2px); /* Lift effect on hover */
+    background-color: #0056b3; /* Darker shade on hover */
 }
 
-/* Styling for the Next Question button */
+/* Next question button */
 .next-question {
-    text-align: center;
-    margin-top: 20px;
+    text-align: center; /* Center the "Next Question" button */
 }
 
 .next-btn {
-    background-color: #28A745;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
+    background-color: #28A745; /* Green button color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding inside button */
+    font-size: 18px; /* Button text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.next-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    background-color: #28A745; /* Green for buttons */
     color: white;
-    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
+    font-size: 16px;
+    text-align: center; /* Center text in buttons */
     transition: background-color 0.3s, transform 0.2s; /* Transition effects */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
 }
 
-.next-btn:hover {
-    background-color: #218838;
+.btn:hover {
+    background-color: #218838; /* Darker green on hover */
     transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Footer styles */
+footer {
+    background-color: #A6192E; /* SFU Dark Red */
+    color: white;
+    text-align: center;
+    padding: 10px 0; /* Padding for footer */
+    position: relative; /* Position for footer */
+    bottom: 0; /* Stick to the bottom */
+    width: 100%; /* Full width */
 }
 
 /* Mobile-friendly styles */
@@ -214,83 +225,12 @@ h1, h2 {
         margin-left: 100px;
     }
 
-    .option-btn {
-        font-size: 14px;
-        padding: 8px 10px;
+    .quiz-item {
+        margin-bottom: 15px; /* Adjust margin for smaller screens */
     }
 
-    .next-btn {
-        font-size: 16px;
-        padding: 8px 15px;
+    .btn {
+        font-size: 14px; /* Smaller font for buttons */
+        padding: 8px 10px; /* Less padding on buttons */
     }
-}
-
-/* Additional specific styles for create_quiz.html */
-/* Container styles */
-.container {
-    max-width: 800px; /* Limit the width of the container */
-    margin: 0 auto; /* Center align the container */
-    padding: 20px;
-}
-
-/* Form elements styling */
-.quiz-form input,
-.quiz-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px; /* Consistent margin */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px; /* Slightly larger font for readability */
-    transition: border-color 0.3s; /* Transition for border color */
-}
-
-.quiz-form input:focus,
-.quiz-form textarea:focus {
-    border-color: #A6192E; /* Highlight border color on focus */
-}
-
-.quiz-form label {
-    font-weight: bold; /* Bold labels for clarity */
-    margin-bottom: 5px;
-    display: block; /* Ensure labels are block elements for spacing */
-}
-
-.question-group {
-    margin-bottom: 20px;
-    padding: 20px; /* Adjusted padding for a cleaner look */
-    background-color: #f2f2f2; /* Light gray background for question groups */
-    border-radius: 8px; /* Rounded corners */
-    border: 1px solid #ccc; /* Light border */
-    transition: background-color 0.3s; /* Transition for background */
-}
-
-.question-group:hover {
-    background-color: #e0e0e0; /* Slight darken on hover */
-}
-
-/* Styling for question and answer inputs */
-.question-group input {
-    margin-bottom: 10px; /* Space between inputs */
-}
-
-/* Quiz button styles */
-.quiz-form button,
-.add-quiz-button {
-    background-color: #A6192E; /* SFU Dark Red */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px; /* Consistent button font size */
-    width: 100%; /* Full-width button */
-    margin-top: 10px; /* Space above buttons */
-    transition: background-color 0.3s, transform 0.2s; /* Transition effects */
-}
-
-.quiz-form button:hover,
-.add-quiz-button:hover {
-    background-color: #CC0633; /* SFU Light Red */
-    transform: translateY(-2px); /* Lift effect on hover */
 }
