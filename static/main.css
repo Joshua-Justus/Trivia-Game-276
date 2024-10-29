@@ -234,3 +234,98 @@ footer {
         padding: 8px 10px; /* Less padding on buttons */
     }
 }
+
+/* Quiz form container styling */
+.quiz-form {
+    background-color: #fff; /* White background for contrast */
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 700px;
+    margin: 0 auto; /* Center the form */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Form labels */
+.quiz-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px; /* Space above labels */
+    color: #333; /* Darker text color */
+}
+
+/* Form input and textarea fields */
+.quiz-form input[type="text"],
+.quiz-form input[type="number"],
+.quiz-form textarea,
+.quiz-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Larger font size */
+    box-sizing: border-box;
+    transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+.quiz-form input[type="text"]:focus,
+.quiz-form input[type="number"]:focus,
+.quiz-form textarea:focus,
+.quiz-form select:focus {
+    border-color: #A6192E; /* Highlight color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Question block styling */
+.question-block {
+    padding: 15px;
+    margin-top: 20px;
+    border: 1px solid #eaeaea; /* Light border for each question */
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Slightly off-white background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+/* Question title */
+.question-block h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #A6192E; /* Primary color for questions */
+    margin-bottom: 10px;
+}
+
+/* Answer option styling */
+.answer-option {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.answer-option input[type="text"] {
+    flex: 1; /* Expand input field to take available space */
+    margin-left: 10px;
+}
+
+/* Submit button */
+.quiz-form button[type="submit"] {
+    background-color: #28A745; /* Primary button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-form button[type="submit"]:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Improve spacing between form sections */
+.quiz-form .form-section {
+    margin-bottom: 20px;
+}
+

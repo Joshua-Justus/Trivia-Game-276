@@ -1,18 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create a Quiz</title>
-    <link rel="stylesheet" href="static/main.css"> <!-- Link to external CSS file -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}">    <!-- LOGO -->
-    
+    <link rel="stylesheet" href="static/main.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}">
+
+    <style>
+        /* Styling for larger input arrows */
+        input[type="number"] {
+            font-size: 18px;
+            padding: 10px;
+            width: 100%;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            appearance: textfield;
+        }
+
+        .question-group {
+            margin-top: 20px; /* Adds spacing between each question block */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .question-group label, .main-content label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .main-content input, .main-content textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+
     <script>
-        let quizzes = []; // Array to store quizzes
+        let quizzes = [];
 
         function generateQuestionFields() {
             const numQuestions = document.getElementById("num_questions").value;
             const questionContainer = document.getElementById("questionContainer");
-            questionContainer.innerHTML = ""; // Clear previous question fields
+            questionContainer.innerHTML = "";
 
             for (let i = 1; i <= numQuestions; i++) {
                 const questionGroup = document.createElement("div");
@@ -21,17 +63,17 @@
                     <label for="question${i}">Question ${i}</label>
                     <input type="text" id="question${i}" name="question${i}" placeholder="Enter question ${i}" required>
 
-                    <label for="answer${i}">Answer Option 1</label>
-                    <input type="text" id="answer${i}1" name="answer${i}1" placeholder="Enter option 1" required>
+                    <label for="option${i}1">Option 1</label>
+                    <input type="text" id="option${i}1" name="option${i}1" placeholder="Enter option 1" required>
 
-                    <label for="answer${i}">Answer Option 2</label>
-                    <input type="text" id="answer${i}2" name="answer${i}2" placeholder="Enter option 2" required>
+                    <label for="option${i}2">Option 2</label>
+                    <input type="text" id="option${i}2" name="option${i}2" placeholder="Enter option 2" required>
 
-                    <label for="answer${i}">Answer Option 3</label>
-                    <input type="text" id="answer${i}3" name="answer${i}3" placeholder="Enter option 3" required>
+                    <label for="option${i}3">Option 3</label>
+                    <input type="text" id="option${i}3" name="option${i}3" placeholder="Enter option 3" required>
 
-                    <label for="answer${i}">Answer Option 4</label>
-                    <input type="text" id="answer${i}4" name="answer${i}4" placeholder="Enter option 4" required>
+                    <label for="option${i}4">Option 4</label>
+                    <input type="text" id="option${i}4" name="option${i}4" placeholder="Enter option 4" required>
 
                     <label for="correct${i}">Correct Answer for Question ${i}</label>
                     <input type="text" id="correct${i}" name="correct${i}" placeholder="Enter the correct answer" required>
@@ -46,7 +88,6 @@
             const numQuestions = document.getElementById("num_questions").value;
             const timeLimit = document.getElementById("time_limit").value;
 
-            // Create a quiz object
             const quiz = {
                 title,
                 description,
@@ -54,20 +95,17 @@
                 timeLimit,
             };
 
-            // Save the quiz to the array
             quizzes.push(quiz);
 
-            // Clear the form fields
             document.querySelector(".quiz-form").reset();
             document.getElementById("questionContainer").innerHTML = "";
 
-            // Display the quizzes
             displayQuizzes();
         }
 
         function displayQuizzes() {
             const quizList = document.getElementById("quizList");
-            quizList.innerHTML = ""; // Clear previous list
+            quizList.innerHTML = "";
 
             quizzes.forEach((quiz) => {
                 const quizItem = document.createElement("div");
@@ -83,25 +121,22 @@
     </script>
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
         <a href="/">Home</a>
         <a href="/quizzes">Quizzes</a>
         {% if 'user_id' in session %}
-            <a href="/create_quiz" title="">Create a Quiz</a>
-            <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
+            <a href="/create_quiz">Create a Quiz</a>
+            <a href="/logout">Log Out</a>
         {% else %}
-            <a href="/login" title="">Login</a>
-            <a href="/signup" title="">Create an Account</a>
+            <a href="/login">Login</a>
+            <a href="/signup">Create an Account</a>
         {% endif %}
     </div>
-    <!-- Main Content -->
     <div class="main-content">
         <header>
             <h1>Create a New Quiz</h1>
         </header>
         <div class="container">
-            <!-- adding the db for the form -->
             <form class="quiz-form" action="{{ url_for('create_quiz_bp.create_quiz') }}" method="POST">
                 <label for="title">Quiz Title</label>
                 <input type="text" id="title" name="title" placeholder="Enter quiz title" required>
@@ -115,13 +150,10 @@
                 <label for="time_limit">Time Limit (in minutes)</label>
                 <input type="number" id="time_limit" name="time_limit" placeholder="Enter time limit (minutes)" min="1" required>
             
-                <!-- Container for dynamically generated question fields -->
                 <div id="questionContainer"></div>
             
-                <!-- Submit Button -->
                 <button type="submit">Submit Quiz</button>
             </form>
-            
         </div>
     </div>
 </body>

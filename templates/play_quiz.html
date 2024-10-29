@@ -4,45 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Play Quiz - Trivia 276</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> <!-- Link to external CSS file -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
-</head>
+    <title>Create a Quiz</title>
+    <link rel="stylesheet" href="static/main.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}">
 
+    <style>
+        /* Styling for larger input arrows */
+        input[type="number"] {
+            font-size: 18px;
+            padding: 10px;
+            width: 100%;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            appearance: textfield;
+        }
+
+        .question-group {
+            margin-top: 20px; /* Adds spacing between each question block */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .question-group label, .main-content label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .main-content input, .main-content textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <script>
+        let quizzes = [];
+
+        function generateQuestionFields() {
+            const numQuestions = document.getElementById("num_questions").value;
+            const questionContainer = document.getElementById("questionContainer");
+            questionContainer.innerHTML = "";
+
+            for (let i = 1; i <= numQuestions; i++) {
+                const questionGroup = document.createElement("div");
+                questionGroup.classList.add("question-group");
+                questionGroup.innerHTML = `
+                    <label for="question${i}">Question ${i}</label>
+                    <input type="text" id="question${i}" name="question${i}" placeholder="Enter question ${i}" required>
+
+                    <label for="option${i}1">Option 1</label>
+                    <input type="text" id="option${i}1" name="option${i}1" placeholder="Enter option 1" required>
+
+                    <label for="option${i}2">Option 2</label>
+                    <input type="text" id="option${i}2" name="option${i}2" placeholder="Enter option 2" required>
+
+                    <label for="option${i}3">Option 3</label>
+                    <input type="text" id="option${i}3" name="option${i}3" placeholder="Enter option 3" required>
+
+                    <label for="option${i}4">Option 4</label>
+                    <input type="text" id="option${i}4" name="option${i}4" placeholder="Enter option 4" required>
+
+                    <label for="correct${i}">Correct Answer for Question ${i}</label>
+                    <input type="text" id="correct${i}" name="correct${i}" placeholder="Enter the correct answer" required>
+                `;
+                questionContainer.appendChild(questionGroup);
+            }
+        }
+
+        function addQuiz() {
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const numQuestions = document.getElementById("num_questions").value;
+            const timeLimit = document.getElementById("time_limit").value;
+
+            const quiz = {
+                title,
+                description,
+                numQuestions,
+                timeLimit,
+            };
+
+            quizzes.push(quiz);
+
+            document.querySelector(".quiz-form").reset();
+            document.getElementById("questionContainer").innerHTML = "";
+
+            displayQuizzes();
+        }
+
+        function displayQuizzes() {
+            const quizList = document.getElementById("quizList");
+            quizList.innerHTML = "";
+
+            quizzes.forEach((quiz) => {
+                const quizItem = document.createElement("div");
+                quizItem.classList.add("quiz-item");
+                quizItem.innerHTML = `
+                    <strong>${quiz.title}</strong>
+                    <p>${quiz.description}</p>
+                    <p>Questions: ${quiz.numQuestions} | Time Limit: ${quiz.timeLimit} minutes</p>
+                `;
+                quizList.appendChild(quizItem);
+            });
+        }
+    </script>
+</head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
-        <a href="/" title="">Home</a>
-        <a class="active" href="/quizzes" title="">Quizzes</a>
+        <a href="/">Home</a>
+        <a href="/quizzes">Quizzes</a>
         {% if 'user_id' in session %}
-            <a href="/create_quiz" title="">Create a Quiz</a>
-            <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
+            <a href="/create_quiz">Create a Quiz</a>
+            <a href="/logout">Log Out</a>
         {% else %}
-            <a href="/login" title="">Login</a>
-            <a href="/signup" title="">Create an Account</a>
+            <a href="/login">Login</a>
+            <a href="/signup">Create an Account</a>
         {% endif %}
     </div>
-    <!-- Main Content -->
     <div class="main-content">
         <header>
-            <h1>{{ quiz.title }}</h1>
+            <h1>Create a New Quiz</h1>
         </header>
-        <div class="quiz-container">
-            <div class="question-box">
-                <h2>Question {{ current_question + 1 }}:</h2>
-                <p>{{ quiz.questions[current_question]['text'] }}</p>
-                <ul class="options">
-                    {% for answer in quiz.questions[current_question]['answers'] %}
-                    <li><button class="option-btn">{{ answer }}</button></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="next-question">
-                <form action="{{ url_for('play_quiz', quiz_id=quiz.id) }}" method="GET">
-                    <input type="hidden" name="question_index" value="{{ current_question + 1 }}">
-                    <button type="submit" class="next-btn">Next Question</button>
-                </form>
-            </div>
+        <div class="container">
+            <form class="quiz-form" action="{{ url_for('create_quiz_bp.create_quiz') }}" method="POST">
+                <label for="title">Quiz Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter quiz title" required>
+            
+                <label for="description">Quiz Description</label>
+                <textarea id="description" name="description" rows="4" placeholder="Enter quiz description" required></textarea>
+            
+                <label for="num_questions">Number of Questions</label>
+                <input type="number" id="num_questions" name="num_questions" placeholder="Enter number of questions" min="1" required oninput="generateQuestionFields()">
+            
+                <label for="time_limit">Time Limit (in minutes)</label>
+                <input type="number" id="time_limit" name="time_limit" placeholder="Enter time limit (minutes)" min="1" required>
+            
+                <div id="questionContainer"></div>
+            
+                <button type="submit">Submit Quiz</button>
+            </form>
         </div>
     </div>
 </body>
