@@ -37,7 +37,7 @@
             margin: 10px 0 5px;
         }
 
-        .main-content input, .main-content textarea {
+        .main-content input, .main-content textarea, .main-content select {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -76,7 +76,13 @@
                     <input type="text" id="option${i}4" name="option${i}4" placeholder="Enter option 4" required>
 
                     <label for="correct${i}">Correct Answer for Question ${i}</label>
-                    <input type="text" id="correct${i}" name="correct${i}" placeholder="Enter the correct answer" required>
+                    <select id="correct${i}" name="correct${i}" required>
+                        <option value="">Select the correct option</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                    </select>
                 `;
                 questionContainer.appendChild(questionGroup);
             }
@@ -154,6 +160,7 @@
             
                 <button type="submit">Submit Quiz</button>
             </form>
+            <div id="quizList"></div>
         </div>
     </div>
 </body>
