@@ -130,7 +130,7 @@ header {
     padding: 20px; /* Padding around quiz content */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     margin: 20px auto; /* Center the container */
-    max-width: 600px; /* Maximum width for larger screens */
+    max-width: 1000px; /* Maximum width for larger screens */
 }
 
 /* Question box styling */
@@ -149,7 +149,7 @@ header {
 }
 
 .option-btn {
-    background-color: #007BFF; /* Primary button color */
+    background-color: #CC0633; /* Primary button color */
     color: white; /* White text color */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners for buttons */
@@ -162,12 +162,12 @@ header {
 }
 
 .option-btn:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #A6192E; /* Darker shade on hover */
 }
 
 /* Next question button */
 .next-question {
-    text-align: center; /* Center the "Next Question" button */
+    text-align: right; /* Center the "Next Question" button */
 }
 
 .next-btn {
@@ -240,7 +240,7 @@ footer {
     background-color: #fff; /* White background for contrast */
     border-radius: 10px;
     padding: 20px;
-    max-width: 700px;
+    max-width: 1000px;
     margin: 0 auto; /* Center the form */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
