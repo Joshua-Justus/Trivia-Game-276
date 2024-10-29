@@ -1,6 +1,6 @@
 # TRIVIA GAME WEBSITE CMPT 276
 
-Features we want for Iteration 1 :
+FEATURES WE WANT FOR ITERATION 1 :
 
 • creating a trivia game
 
@@ -8,13 +8,13 @@ Features we want for Iteration 1 :
 
 • logging in for users to create games
 
-Features completed for Iteration 1 : 
+FEATURES COMPLETED FOR ITERATION 1 : 
 
 • logging in for users (very first stages of implementation)
 
 • each view in relation to the trivia games are made
 
-What went right?
+WHAT WENT RIGHT?
 
 • the views and styling are slightly consistent
 
@@ -22,7 +22,7 @@ What went right?
 
 • early start into some features (login and quiz creation)
 
-What went wrong?
+WHAT WENT WRONG?
 
 • our lack of knowledge in github and in general git workflow
 
@@ -30,12 +30,25 @@ What went wrong?
 
 • irregular meetings and lack of actual work done (mostly bug fixing and understanding what to do with git)
 
-Things to improve :
+THINGS TO IMPROVE :
 
 • our understanding of github and git commands and what they do
 
 • time management and planning
 
-Running Instructions :
+RUNNING INSTRUCTIONS :
 
 Run the command "python app.py".
+
+FEATURES WE WANT FOR ITERATION 2 :
+
+• creating a trivia game 
+
+• playing a trivia game already created by the developers 
+
+FEATURES COMPLETED FOR ITERATION 2 : 
+
+• 
+
+• 
+

@@ -25,16 +25,6 @@
         <header>
             <h1>Trivia 276</h1>
         </header>
-
-        <!-- Flash message section (This will only show the latest message)-->
-        {% with messages = get_flashed_messages(with_categories=False) %}
-          {% if messages %}
-           <ul>
-                <li>{{ messages[-1] }}</li>
-           </ul>
-          {% endif %}
-        {% endwith %}
-
         <div class="container">
             <p>This is the homepage for Trivia 276. Feel free to play different quizzes, create your own account and create quizzes.</p>
         </div>
