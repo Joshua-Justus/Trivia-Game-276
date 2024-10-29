@@ -58,10 +58,10 @@ def create_quiz():
     # Save each question for the quiz.
     for i in range(1, num_questions + 1):
         question_text = request.form.get(f'question{i}')
-        option1 = request.form.get(f'answer{i}1')
-        option2 = request.form.get(f'answer{i}2')
-        option3 = request.form.get(f'answer{i}3')
-        option4 = request.form.get(f'answer{i}4')
+        option1 = request.form.get(f'option{i}1')
+        option2 = request.form.get(f'option{i}2')
+        option3 = request.form.get(f'option{i}3')
+        option4 = request.form.get(f'option{i}4')
         correct_answer = request.form.get(f'correct{i}')
 
         # Create a new Question object for each question.
