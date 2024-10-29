@@ -1,4 +1,5 @@
-from flask import Flask, redirect, render_template, request, url_for, flash, session
+from flask import Flask, redirect, render_template, request, url_for, flash, session, jsonify
+from werkzeug.security import generate_password_hash, check_password_hash  # Import for password security
 from models import db
 from user import User
 from create_quiz import create_quiz_bp
@@ -52,19 +53,17 @@ def play_quiz(quiz_id):
     return render_template('play_quiz.html', quiz=quiz, current_question=question_index)
 
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
 
-        # Tries to find the first username match in the Users table.
+        # Try to find the user by username
         user = User.query.filter_by(username=username).first()
 
-        # Check if the user exists and the password matches the login info.
-        if user and user.password == password:
-            # Stores the user ID for the session, used to check if user is currently logged in.
+        # Check if user exists and the password is correct
+        if user and check_password_hash(user.password, password):
             session["user_id"] = user.id
             flash("Login successful")
             return redirect(url_for("home"))
@@ -74,6 +73,7 @@ def login():
 
     return render_template("login.html")
 
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
@@ -81,40 +81,42 @@ def signup():
         password = request.form['password']
         confirm_password = request.form['confirm_password']
 
-        # Checking if the passwords matched
+        # Check if passwords match
         if password != confirm_password:
             flash("Passwords do not match.")
             return redirect(url_for("signup"))
         
-        # Checking for existing usernames
+        # Check for existing usernames
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
-            flash("Username already existed. Please choose another one.")
+            flash("Username already exists. Please choose another one.")
             return redirect(url_for("signup"))
 
-        # Register the new user to the Users database
-        new_user = User(username=username, password=password)
+        # Register the new user with hashed password
+        hashed_password = generate_password_hash(password)
+        new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        
-        flash("Account created successfully! Please log in.")
-        return redirect(url_for("login"))
+
+        # Log the user in automatically after successful signup
+        session["user_id"] = new_user.id
+        flash("Account created successfully! You are now logged in.")
+        return redirect(url_for("home"))
 
     return render_template("signup.html")
 
-# So that the user could log out, and the session does not persist between browser refreshes.
+
 @app.route("/logout")
 def logout():
     # Clears the session data.
-    # Remove the user_id from the session.
     session.pop("user_id", None)  
     flash("Successfully logged out.")
     return redirect(url_for("home"))
 
-# Help show the Question database. Need to manually type/show_questions in the url for it to work.
+
+# Show questions from the database
 @app.route('/show_questions', methods=['GET'])
 def show_questions():
-    # Query all questions from the database
     questions = Question.query.all()
     
     # Format the result as a list of dictionaries
@@ -133,6 +135,7 @@ def show_questions():
     
     # Return the data as JSON
     return jsonify(questions_data)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
