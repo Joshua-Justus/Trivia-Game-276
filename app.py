@@ -111,5 +111,28 @@ def logout():
     flash("Successfully logged out.")
     return redirect(url_for("home"))
 
+# Help show the Question database. Need to manually type/show_questions in the url for it to work.
+@app.route('/show_questions', methods=['GET'])
+def show_questions():
+    # Query all questions from the database
+    questions = Question.query.all()
+    
+    # Format the result as a list of dictionaries
+    questions_data = []
+    for question in questions:
+        questions_data.append({
+            "id": question.id,
+            "quiz_id": question.quiz_id,
+            "question_text": question.question_text,
+            "option1": question.option1,
+            "option2": question.option2,
+            "option3": question.option3,
+            "option4": question.option4,
+            "correct_answer": question.correct_answer
+        })
+    
+    # Return the data as JSON
+    return jsonify(questions_data)
+
 if __name__ == "__main__":
     app.run(debug=True)
