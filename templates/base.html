@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +12,13 @@
     <div class="sidebar">
         <a class="active" href="/" title="">Home</a>
         <a href="/quizzes" title="">Quizzes</a>
-        <a href="/create_quiz" title="">Create a Quiz</a>
-        <a href="/login" title="">Log In</a>
-        <a href="/signup" title="">Create an Account</a>
-
+        {% if 'user_id' in session %}
+            <a href="/create_quiz" title="">Create a Quiz</a>
+            <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
+        {% else %}
+            <a href="/login" title="">Login</a>
+            <a href="/signup" title="">Create an Account</a>
+        {% endif %}
     </div>
     <!-- Main Content -->
     <div class="main-content">

@@ -13,9 +13,13 @@
     <div class="sidebar">
         <a href="/" title="">Home</a>
         <a class="active" href="/quizzes" title="">Quizzes</a>
-        <a href="/create_quiz" title="">Create a Quiz</a>
-        <a href="/login" title="">Log In</a>
-        <a href="/signup" title="">Create an Account</a>
+        {% if 'user_id' in session %}
+            <a href="/create_quiz" title="">Create a Quiz</a>
+            <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
+        {% else %}
+            <a href="/login" title="">Login</a>
+            <a href="/signup" title="">Create an Account</a>
+        {% endif %}
     </div>
     <!-- Main Content -->
     <div class="main-content">
@@ -25,12 +29,12 @@
         <div class="container">
             <div class="quiz-list">
                 <div class="quiz-item">
-                    <h2>Quiz Title 1</h2>
+                    <h2 class="quiz-title">Quiz Title 1</h2>
                     <p>Description of Quiz 1.</p>
                     <a href="/play_quiz/1" class="btn">Play Quiz</a>
                 </div>
                 <div class="quiz-item">
-                    <h2>Quiz Title 2</h2>
+                    <h2 class="quiz-title">Quiz Title 2</h2>
                     <p>Description of Quiz 2.</p>
                     <a href="/play_quiz/2" class="btn">Play Quiz</a>
                 </div>
@@ -38,8 +42,8 @@
             </div>
         </div>
     </div>
-    <!-- Footer
-    <footer>
+    <!-- Footer -->
+    <!-- <footer>
         <p>Trivia 276</p>
     </footer> -->
 </body>
