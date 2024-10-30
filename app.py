@@ -5,7 +5,7 @@ from user import User
 from create_quiz import create_quiz_bp, Quiz, Question
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'  # Database configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/rushilsehgal/Library/CloudStorage/OneDrive-SimonFraserUniversity(1sfu)/Trivia-website/quiz.db'  # Database configuration
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Set a secret key for Flask. Helps for the flash, the updating messages.
