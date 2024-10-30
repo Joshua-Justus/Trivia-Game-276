@@ -16,29 +16,41 @@
         <a class="active" href="/quizzes" title="">Quizzes</a>
         {% if 'user_id' in session %}
             <a href="/create_quiz" title="">Create a Quiz</a>
-            <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
+            <a href="/logout" title="">Log Out</a>
         {% else %}
             <a href="/login" title="">Login</a>
             <a href="/signup" title="">Create an Account</a>
         {% endif %}
     </div>
+
     <!-- Main Content -->
     <div class="main-content">
         <header>
-            <h1>{{ quiz[quiz.quiz_id ~ '.000'] }}</h1>
-            <p>{{ quiz[quiz.quiz_id ~ '.001'] }}</p>
-            <p>Time Limit: {{ quiz[quiz.quiz_id ~ '.002'] }} minutes</p>
+            <h1>{{ quiz.title }}</h1>
+            <p>{{ quiz.description }}</p> <!-- Display description below title -->
+            <p><strong>Time Limit:</strong> {{ quiz.time_limit }} minutes</p>
         </header>
+
         <div class="quiz-container">
             <div class="question-box">
                 <h2>Question {{ current_question + 1 }}:</h2>
-                <p>{{ quiz[quiz.quiz_id ~ '.' ~ "{:02}".format(current_question + 1) ~ '0'] }}</p>
+                <p>{{ quiz.current_question.question_text }}</p>
+                
                 <ul class="options">
-                    {% for option_id, answer in quiz.options.items() %}
-                    <li><button class="option-btn">{{ answer }}</button></li>
+                    {% for option_id, answer in quiz.current_question.options.items() %}
+                    <li>
+                        <button class="option-btn" data-option-id="{{ option_id }}">
+                            {{ answer }}
+                        </button>
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
+
+            <!-- Feedback message placeholder -->
+            <div id="feedback-message" class="feedback"></div>
+
+            <!-- Next Question Button -->
             <div class="next-question">
                 <form action="{{ url_for('play_quiz', quiz_id=quiz.quiz_id) }}" method="GET">
                     <input type="hidden" name="question_index" value="{{ current_question + 1 }}">
@@ -47,5 +59,30 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript to handle option selection and feedback -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const optionButtons = document.querySelectorAll(".option-btn");
+            const feedbackMessage = document.getElementById("feedback-message");
+            const correctAnswer = "{{ quiz.current_question.correct_answer }}";
+
+            optionButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    // Disable all option buttons after selection
+                    optionButtons.forEach(btn => btn.disabled = true);
+
+                    // Check if selected option is correct
+                    if (button.getAttribute("data-option-id") === correctAnswer) {
+                        feedbackMessage.textContent = "Correct!";
+                        feedbackMessage.style.color = "green";
+                    } else {
+                        feedbackMessage.textContent = "Wrong answer!";
+                        feedbackMessage.style.color = "red";
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

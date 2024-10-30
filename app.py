@@ -1,14 +1,16 @@
 from flask import Flask, redirect, render_template, request, url_for, flash, session, jsonify
-from werkzeug.security import generate_password_hash, check_password_hash  # Import for password security
+from werkzeug.security import generate_password_hash, check_password_hash
 from models import db
 from user import User
 from create_quiz import create_quiz_bp, Quiz, Question
 
 app = Flask(__name__)
+<<<<<<< HEAD
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/rushilsehgal/Library/CloudStorage/OneDrive-SimonFraserUniversity(1sfu)/Trivia-website/quiz.db'  # Database configuration
+=======
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
+>>>>>>> 77363c8e0e019de9d1bc8ae80fb6afcd04ed9a5c
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# Set a secret key for Flask. Helps for the flash, the updating messages.
 app.secret_key = 'cmpt_276_trivia'
 
 # Initialize the database with the app.
@@ -24,66 +26,51 @@ with app.app_context():
 def home():
     return render_template('base.html')
 
+# Route to display all available quizzes
 @app.route("/quizzes")
-def quiz():
-    return render_template('quizzes.html')
+def quizzes():
+    # Retrieve all quizzes from the database
+    quizzes = Quiz.query.all()
+    return render_template('quizzes.html', quizzes=quizzes)
 
-# Sample quiz data for testing
-sample_quiz = {
-    'id': 1,
-    'title': 'General Knowledge Quiz',
-    'questions': [
-        {'text': 'What is the capital of France?', 'answers': ['Paris', 'London', 'Rome', 'Berlin'], 'correct': 'Paris'},
-        {'text': 'What is 2 + 2?', 'answers': ['3', '4', '5', '6'], 'correct': '4'},
-        {'text': 'What is the largest ocean on Earth?', 'answers': ['Indian Ocean', 'Atlantic Ocean', 'Arctic Ocean', 'Pacific Ocean'], 'correct': 'Pacific Ocean'},
-    ]
-}
-
-# Made Changes Here
+# Route to display a specific quiz by ID, including its questions
 @app.route("/play_quiz/<int:quiz_id>")
 def play_quiz(quiz_id):
-    # Retrieve the ID from the database:
+    # Retrieve the quiz by ID
     quiz = Quiz.query.get(quiz_id)
-    # Redirect if the Quiz does not exist
     if not quiz:
-        return redirect(url_for("quiz"))
+        flash("Quiz not found.")
+        return redirect(url_for('quizzes'))
 
-    # Get the questions from the Database
+    # Retrieve all questions for the selected quiz
     questions = Question.query.filter_by(quiz_id=quiz_id).all()
-    print("Questions Retrieved:", questions)
-    # Redirect if the Questions are not found
-    if not questions:
-        return redirect(url_for("quiz"))
-    
-    # Parse the question index from the url
-    question_index = request.args.get('question_index', default=0, type=int)
 
-    # Returns the user back to the quizzes page if the question index exceeds the number of questions in the quiz
-    if question_index >= len(questions):
-        return redirect(url_for("quiz"))
-    
-    # Formatting of the quiz database for the front end
-    current_question = questions[question_index]
+    # Set the initial question index (if no question index is specified in the URL)
+    question_index = int(request.args.get('question_index', 0))
 
-    # Helps the formatting to match up with what we discussed
-    padded_question_number = str(question_index + 1).zfill(2)
+    # Check if the question index is within the bounds of the question list
+    if question_index < len(questions):
+        current_question = questions[question_index]
+    else:
+        # Redirect to quiz list if all questions are answered
+        return redirect(url_for('quizzes'))
 
-    correct_answer = current_question.correct_answer
-    correct_answer_id = f"{quiz_id}.{padded_question_number}{correct_answer}"
-
+    # Format the quiz data for display
     quiz_data = {
-        "quiz_id": quiz.id,
-        f"{quiz_id}.000": quiz.title,
-        f"{quiz_id}.001": quiz.description,
-        f"{quiz_id}.002": quiz.time_limit,
-        f"{quiz_id}.{padded_question_number}0": current_question.question_text,
-        "options": {
-        f"{quiz_id}.{padded_question_number}1": current_question.option1,
-        f"{quiz_id}.{padded_question_number}2": current_question.option2,
-        f"{quiz_id}.{padded_question_number}3": current_question.option3,
-        f"{quiz_id}.{padded_question_number}4": current_question.option4,
-        },
-        "correct_answer": correct_answer_id
+        'quiz_id': quiz.id,
+        'title': quiz.title,
+        'description': quiz.description,
+        'time_limit': quiz.time_limit,
+        'current_question': {
+            'question_text': current_question.question_text,
+            'options': {
+                '1': current_question.option1,
+                '2': current_question.option2,
+                '3': current_question.option3,
+                '4': current_question.option4
+            },
+            'correct_answer': current_question.correct_answer
+        }
     }
 
     return render_template("play_quiz.html", quiz=quiz_data, current_question=question_index)
@@ -149,7 +136,7 @@ def logout():
     return redirect(url_for("home"))
 
 
-# Show questions from the database
+# Show questions from the database as JSON for API access (optional)
 @app.route('/show_questions', methods=['GET'])
 def show_questions():
     questions = Question.query.all()
