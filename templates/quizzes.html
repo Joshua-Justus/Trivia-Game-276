@@ -42,9 +42,24 @@
             </div>
         </div>
     </div>
-    <!-- Footer -->
-    <!-- <footer>
-        <p>Trivia 276</p>
-    </footer> -->
 </body>
 </html>
+<!--
+    <div class="main-content">
+        <header>
+            <h1>Available Quizzes</h1>
+        </header>
+        <div class="container">
+            <div class="quiz-list">
+                {% for quiz in quizzes %}
+                <div class="quiz-item">
+                    <h2 class="quiz-title">{{ quiz.title }}</h2>
+                    <p>{{ quiz.description }}</p>
+                    <a href="/play_quiz/{{ quiz.id }}" class="btn">Play Quiz</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+-->
+
