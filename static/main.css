@@ -130,7 +130,7 @@ header {
     padding: 20px; /* Padding around quiz content */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     margin: 20px auto; /* Center the container */
-    max-width: 1000px; /* Maximum width for larger screens */
+    max-width: auto; /* Maximum width for larger screens */
 }
 
 /* Question box styling */
