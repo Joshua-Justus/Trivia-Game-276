@@ -328,3 +328,15 @@ footer {
 .quiz-form .form-section {
     margin-bottom: 20px;
 }
+
+.log-in-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.sign-up-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
