@@ -30,15 +30,15 @@
         <div class="quiz-container">
             <div class="question-box">
                 <h2>Question {{ current_question + 1 }}:</h2>
-                <p>{{ quiz.questions[current_question]['text'] }}</p>
+                <p>{{ quiz.current_question.question_text }}</p>
                 <ul class="options">
-                    {% for answer in quiz.questions[current_question]['answers'] %}
+                    {% for option_id, answer in quiz.current_question.options.items() %}
                     <li><button class="option-btn">{{ answer }}</button></li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="next-question">
-                <form action="{{ url_for('play_quiz', quiz_id=quiz.id) }}" method="GET">
+                <form action="{{ url_for('play_quiz', quiz_id=quiz.quiz_id) }}" method="GET">
                     <input type="hidden" name="question_index" value="{{ current_question + 1 }}">
                     <button type="submit" class="next-btn">Next Question</button>
                 </form>

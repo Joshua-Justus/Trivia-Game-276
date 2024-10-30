@@ -2,7 +2,7 @@ from flask import Flask, redirect, render_template, request, url_for, flash, ses
 from werkzeug.security import generate_password_hash, check_password_hash  # Import for password security
 from models import db
 from user import User
-from create_quiz import create_quiz_bp
+from create_quiz import create_quiz_bp, Quiz, Question
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'  # Database configuration
@@ -39,18 +39,59 @@ sample_quiz = {
     ]
 }
 
+# Made Changes Here
 @app.route("/play_quiz/<int:quiz_id>")
 def play_quiz(quiz_id):
-    quiz = sample_quiz if quiz_id == 1 else None
+    # Retrieve the ID from the database:
+    quiz = Quiz.query.get(quiz_id)
+    # Redirect if the Quiz does not exist
     if not quiz:
-        return redirect(url_for('quizzes'))
+        return redirect(url_for("quiz"))
 
+    # Get the questions from the Database
+    questions = Question.query.filter_by(quiz_id=quiz_id).all()
+    print("Questions Retrieved:", questions)
+    # Redirect if the Questions are not found
+    if not questions:
+        return redirect(url_for("quiz"))
+    
+    # Parse the question index from the url
     question_index = request.args.get('question_index', default=0, type=int)
 
-    if question_index >= len(quiz['questions']):
-        return redirect(url_for('quizzes'))  # Redirect after finishing the quiz
+    # Returns the user back to the quizzes page if the question index exceeds the number of questions in the quiz
+    if question_index >= len(questions):
+        return redirect(url_for("quiz"))
+    
+    # Formatting of the quiz database for the front end
+    current_question = questions[question_index]
 
-    return render_template('play_quiz.html', quiz=quiz, current_question=question_index)
+    # Helps the formatting to match up with what we discussed
+    padded_question_number = str(question_index + 1).zfill(2)
+
+    option_ids = {
+        f"{quiz_id}.{padded_question_number}1": current_question.option1,
+        f"{quiz_id}.{padded_question_number}2": current_question.option2,
+        f"{quiz_id}.{padded_question_number}3": current_question.option3,
+        f"{quiz_id}.{padded_question_number}4": current_question.option4,
+    }
+
+    correct_answer = current_question.correct_answer
+    correct_answer_id = f"{quiz_id}.{padded_question_number}{correct_answer}"
+
+    quiz_data = {
+        "quiz_id": quiz.id,
+        "title": quiz.title,
+        "description": quiz.description,
+        "time_limit": quiz.time_limit,
+        "current_question": {
+            "question_text": current_question.question_text,
+            "options": option_ids,
+            "correct_answer": correct_answer_id
+        }
+    }
+
+    return render_template("play_quiz.html", quiz=quiz_data, current_question=question_index)
+
 
 
 @app.route("/login", methods=["GET", "POST"])
