@@ -25,8 +25,13 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <header>
-            <h1>{{ quiz.title }}</h1>
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="flex-grow: 1; text-align: center;">
+                <h1>{{ quiz.title }}</h1>
+            </div>
+            <div style="text-align: right; width: 250px; padding-right: 50px">
+                <p><strong>Time Remaining:</strong> <span id="timer">{{ quiz.time_limit }}:00</span></p>
+            </div>
         </header>
 
         <div class="quiz-container">
@@ -58,19 +63,39 @@
         </div>
     </div>
 
-    <!-- JavaScript to handle option selection and feedback -->
+    <!-- JavaScript to handle option selection, feedback, and timer -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const optionButtons = document.querySelectorAll(".option-btn");
             const feedbackMessage = document.getElementById("feedback-message");
             const correctAnswer = "{{ quiz.current_question.correct_answer }}";
             const nextButtonForm = document.querySelector(".next-question form");
-    
+            const timerElement = document.getElementById("timer");
+
+            let timeRemaining = {{quiz.time_limit}} * 60; // Convert minutes to seconds
+
+            function startTimer() {
+                const timerInterval = setInterval(() => {
+                    const minutes = Math.floor(timeRemaining / 60);
+                    const seconds = timeRemaining % 60;
+                    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                    timeRemaining--;
+
+                    // If time runs out, submit the next question
+                    if (timeRemaining < 0) {
+                        clearInterval(timerInterval);
+                        nextButtonForm.submit();
+                    }
+                }, 1000);
+            }
+
+            startTimer();
+
             optionButtons.forEach(button => {
                 button.addEventListener("click", () => {
                     // Disable all option buttons after selection
                     optionButtons.forEach(btn => btn.disabled = true);
-    
+
                     // Check if selected option is correct
                     if (button.getAttribute("data-option-id") === correctAnswer) {
                         feedbackMessage.textContent = "Correct!";
@@ -79,7 +104,7 @@
                         feedbackMessage.textContent = "Wrong answer!";
                         feedbackMessage.style.color = "red";
                     }
-    
+
                     // Auto-submit the next question after a brief delay
                     setTimeout(() => {
                         nextButtonForm.submit();
