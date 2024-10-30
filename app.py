@@ -68,31 +68,25 @@ def play_quiz(quiz_id):
     # Helps the formatting to match up with what we discussed
     padded_question_number = str(question_index + 1).zfill(2)
 
-    option_ids = {
-        f"{quiz_id}.{padded_question_number}1": current_question.option1,
-        f"{quiz_id}.{padded_question_number}2": current_question.option2,
-        f"{quiz_id}.{padded_question_number}3": current_question.option3,
-        f"{quiz_id}.{padded_question_number}4": current_question.option4,
-    }
-
     correct_answer = current_question.correct_answer
     correct_answer_id = f"{quiz_id}.{padded_question_number}{correct_answer}"
 
     quiz_data = {
         "quiz_id": quiz.id,
-        "title": quiz.title,
-        "description": quiz.description,
-        "time_limit": quiz.time_limit,
-        "current_question": {
-            "question_text": current_question.question_text,
-            "options": option_ids,
-            "correct_answer": correct_answer_id
-        }
+        f"{quiz_id}.000": quiz.title,
+        f"{quiz_id}.001": quiz.description,
+        f"{quiz_id}.002": quiz.time_limit,
+        f"{quiz_id}.{padded_question_number}0": current_question.question_text,
+        "options": {
+        f"{quiz_id}.{padded_question_number}1": current_question.option1,
+        f"{quiz_id}.{padded_question_number}2": current_question.option2,
+        f"{quiz_id}.{padded_question_number}3": current_question.option3,
+        f"{quiz_id}.{padded_question_number}4": current_question.option4,
+        },
+        "correct_answer": correct_answer_id
     }
 
     return render_template("play_quiz.html", quiz=quiz_data, current_question=question_index)
-
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

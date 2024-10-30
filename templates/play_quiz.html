@@ -25,14 +25,16 @@
     <!-- Main Content -->
     <div class="main-content">
         <header>
-            <h1>{{ quiz.title }}</h1>
+            <h1>{{ quiz[quiz.quiz_id ~ '.000'] }}</h1>
+            <p>{{ quiz[quiz.quiz_id ~ '.001'] }}</p>
+            <p>Time Limit: {{ quiz[quiz.quiz_id ~ '.002'] }} minutes</p>
         </header>
         <div class="quiz-container">
             <div class="question-box">
                 <h2>Question {{ current_question + 1 }}:</h2>
-                <p>{{ quiz.current_question.question_text }}</p>
+                <p>{{ quiz[quiz.quiz_id ~ '.' ~ "{:02}".format(current_question + 1) ~ '0'] }}</p>
                 <ul class="options">
-                    {% for option_id, answer in quiz.current_question.options.items() %}
+                    {% for option_id, answer in quiz.options.items() %}
                     <li><button class="option-btn">{{ answer }}</button></li>
                     {% endfor %}
                 </ul>
