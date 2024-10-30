@@ -75,9 +75,13 @@
                     if (button.getAttribute("data-option-id") === correctAnswer) {
                         feedbackMessage.textContent = "Correct!";
                         feedbackMessage.style.color = "green";
+                        button.classList.add("correct");
+
                     } else {
                         feedbackMessage.textContent = "Wrong answer!";
                         feedbackMessage.style.color = "red";
+                        button.classList.add("incorrect");
+                        document.querySelector(`.option-btn[data-option-id="${correctAnswer}"]`).classList.add("correct");
                     }
     
                     // Auto-submit the next question after a brief delay
