@@ -403,3 +403,24 @@ footer {
     justify-content: center; 
     align-items: center;
 }
+
+/* Correct and incorrect answer styles */
+.correct {
+    background-color: #28a745; /* Green for correct answer */
+    color: white;
+}
+
+.correct:hover {
+    background-color: #28a745; /* Green for correct answer */
+    color: white;
+}
+.incorrect {
+    background-color: #8B0000; /* Blood red for incorrect answer */
+    color: white;
+}
+
+.incorrect:hover {
+    background-color: #8B0000; /* Blood red for incorrect answer */
+    color: white;
+}
+
