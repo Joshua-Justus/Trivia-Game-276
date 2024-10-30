@@ -108,6 +108,69 @@ header {
     width: 100%; /* Full width */
 }
 
+/* Login form container styles */
+.log-in-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Center the form vertically */
+}
+
+.login-form-container {
+    background-color: #fff; /* White background */
+    padding: 30px 40px; /* Increased padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0); /* Soft shadow */
+    max-width: 400px; /* Limit width */
+    width: 100%; /* Full width for smaller screens */
+}
+
+/* Form label styles */
+.login-form-container label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px; /* Space above labels */
+    display: block;
+}
+
+/* Input field styles */
+.login-form-container input[type="text"],
+.login-form-container input[type="password"] {
+    width: 94%;
+    padding: 12px; /* Increased padding for larger input fields */
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s; /* Smooth transition on focus */
+}
+
+.login-form-container input[type="text"]:focus,
+.login-form-container input[type="password"]:focus {
+    border-color: #A6192E; /* Highlight on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Submit button styles */
+.login-btn {
+    background-color: #CC0633; /* Primary button color */
+    color: white;
+    padding: 12px;
+    width: 100%; /* Full width */
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0); /* Button shadow */
+}
+
+.login-btn:hover {
+    background-color: #A6192E; /* Darker color on hover */
+}
+
 /* Quiz item styling */
 .quiz-item {
     background-color: #fff; /* White background for quiz items */
