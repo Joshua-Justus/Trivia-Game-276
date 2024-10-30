@@ -18,7 +18,7 @@
             <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
         {% else %}
             <a href="/login" title="">Login</a>
-            <a href="/signup" title="">Create an Account</a>
+            <a class="active" href="/signup" title="">Create an Account</a>
         {% endif %}
     </div>
 
@@ -28,17 +28,6 @@
             <h1>Create an Account</h1>
         </header>
         
-        <!-- Flash message section: Shows what went right/wrong with the sign up. -->
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul>
-              {% for message in messages %}
-                <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
-
         <div class="container">
             <form action="/signup" method="POST">
                 <label for="signup-username">Username:</label>

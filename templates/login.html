@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="static/main.css"> <!-- Link to external CSS file -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
 </head>
+
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -17,7 +18,7 @@
             <a href="/create_quiz" title="">Create a Quiz</a>
             <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
         {% else %}
-            <a href="/login" title="">Login</a>
+            <a class="active" href="/login" title="">Login</a>
             <a href="/signup" title="">Create an Account</a>
         {% endif %}
     </div>
@@ -27,6 +28,17 @@
         <header>
             <h1>Log In</h1>
         </header>
+         <!-- Flash message section: Shows what went right/wrong with the sign up. -->
+         {% with messages = get_flashed_messages() %}
+         {% if messages %}
+           <ul>
+             {% for message in messages %}
+               <li>{{ message }}</li>
+             {% endfor %}
+           </ul>
+         {% endif %}
+       {% endwith %}
+
 
         <div class="container">
             <form action="/login" method="POST">
