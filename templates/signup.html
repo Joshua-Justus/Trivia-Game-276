@@ -28,16 +28,21 @@
             <h1>Create an Account</h1>
         </header>
         
-        <div class="sign-up-container">
-            <form action="/signup" method="POST">
-                <label for="signup-username">Username:</label><br>
-                <input type="text" id="signup-username" name="username" required><br><br>
-                <label for="signup-password">Password:</label><br>
-                <input type="password" id="signup-password" name="password" required><br><br>
-                <label for="signup-confirm-password">Confirm Password:</label><br>
-                <input type="password" id="signup-confirm-password" name="confirm_password" required><br><br>
-                <input type="submit" value="Create Account">
-            </form>
+        <div class="sign-up-container log-in-container"> <!-- Added log-in-container class -->
+            <div class="login-form-container"> <!-- Added login-form-container div -->
+                <form action="/signup" method="POST">
+                    <label for="signup-username">Username:</label>
+                    <input type="text" id="signup-username" name="username" required>
+                    
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" name="password" required>
+                    
+                    <label for="signup-confirm-password">Confirm Password:</label>
+                    <input type="password" id="signup-confirm-password" name="confirm_password" required>
+                    
+                    <input type="submit" class="login-btn" value="Create Account"> <!-- Added class for styling -->
+                </form>
+            </div>
         </div>
     </div>
 </body>
