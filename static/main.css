@@ -424,3 +424,9 @@ footer {
     color: white;
 }
 
+.flash-messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0 20px; /* Adds 20px of space above and below the flash message */
+    text-align: center;
+}

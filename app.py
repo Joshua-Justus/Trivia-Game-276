@@ -5,7 +5,7 @@ from user import User
 from create_quiz import create_quiz_bp, Quiz, Question
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'  # Database configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'cmpt_276_trivia'
 
@@ -49,7 +49,7 @@ def play_quiz(quiz_id):
         current_question = questions[question_index]
     else:
         # Redirect to quiz list if all questions are answered
-        return redirect(url_for('quizzes'))
+        return redirect(url_for('final_score', quiz_id=quiz_id))  # New code to redirect to final_score.html
 
     # Format the quiz data for display
     quiz_data = {
@@ -70,6 +70,14 @@ def play_quiz(quiz_id):
     }
 
     return render_template("play_quiz.html", quiz=quiz_data, current_question=question_index)
+
+@app.route("/final_score/<int:quiz_id>")
+def final_score(quiz_id):
+    quiz = Quiz.query.get(quiz_id)
+    total_questions = quiz.total_questions
+    user_score = 0 # session.get('user_score', 0)  
+
+    return render_template("final_score.html", user_score=user_score, total_questions=total_questions)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

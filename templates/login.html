@@ -28,26 +28,26 @@
         <header>
             <h1>Log In</h1>
         </header>
-         <!-- Flash message section: Shows what went right/wrong with the sign up. -->
-         {% with messages = get_flashed_messages() %}
-         {% if messages %}
-           <ul>
-             {% for message in messages %}
-               <li>{{ message }}</li>
-             {% endfor %}
-           </ul>
-         {% endif %}
-       {% endwith %}
-
 
        <div class="log-in-container">
         <div class="login-form-container">
             <form action="/login" method="POST">
                 <label for="login-username">Username:</label>
-                <input type="text" id="login-username" name="username" required>
+                <input type="text" id="login-username" name="username" required autocomplete="off">
                 
                 <label for="login-password">Password:</label>
-                <input type="password" id="login-password" name="password" required>
+                <input type="password" id="login-password" name="password" required autocomplete="off">
+
+                <!-- Flash message section: Shows what went right/wrong with the sign up. -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="flash-messages">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
                 
                 <button type="submit" class="login-btn">Log In</button>
             </form>

@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const correctAnswer = document.querySelector(".quiz-container").getAttribute("data-correct-answer");
     const nextButtonForm = document.querySelector(".next-question form");
     const timerElement = document.getElementById("timer");
-    const score = 0;
 
     let timeRemaining = parseInt(timerElement.getAttribute("data-time-limit")) * 60; // Convert minutes to seconds
 
@@ -35,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 feedbackMessage.textContent = "Correct!";
                 feedbackMessage.style.color = "green";
                 button.classList.add("correct");
+                score ++; 
             } else {
                 feedbackMessage.textContent = "Wrong answer!";
                 feedbackMessage.style.color = "red";
@@ -49,4 +49,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1500); // 1.5-second delay to allow user to see feedback
         });
     });
-});
+})
