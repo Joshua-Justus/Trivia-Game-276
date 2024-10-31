@@ -145,16 +145,16 @@
         <div class="container">
             <form class="quiz-form" action="{{ url_for('create_quiz_bp.create_quiz') }}" method="POST">
                 <label for="title">Quiz Title</label>
-                <input type="text" id="title" name="title" placeholder="Enter quiz title" required>
+                <input type="text" id="title" name="title" placeholder="Enter quiz title" required autocomplete="off">
             
                 <label for="description">Quiz Description</label>
-                <textarea id="description" name="description" rows="4" placeholder="Enter quiz description" required></textarea>
+                <textarea id="description" name="description" rows="4" placeholder="Enter quiz description" required autocomplete="off"></textarea>
             
                 <label for="num_questions">Number of Questions</label>
-                <input type="number" id="num_questions" name="num_questions" placeholder="Enter number of questions" min="1" required oninput="generateQuestionFields()">
+                <input type="number" id="num_questions" name="num_questions" placeholder="Enter number of questions" min="1" required oninput="generateQuestionFields()" autocomplete="off">
             
                 <label for="time_limit">Time Limit (in minutes)</label>
-                <input type="number" id="time_limit" name="time_limit" placeholder="Enter time limit (minutes)" min="1" required>
+                <input type="number" id="time_limit" name="time_limit" placeholder="Enter time limit (minutes)" min="1" required autocomplete="off">
             
                 <div id="questionContainer"></div>
             
