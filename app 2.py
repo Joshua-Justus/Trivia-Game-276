@@ -15,36 +15,43 @@ db.init_app(app)
 # Register the blueprint with the app.
 app.register_blueprint(create_quiz_bp)
 
-<<<<<<< HEAD
 with app.app_context():
     db.create_all()
 
-=======
->>>>>>> 447757fe99d972072256f07b858eef61aa1b46b0
 @app.route("/")
 def home():
     return render_template('base.html')
 
+# Route to display all available quizzes
 @app.route("/quizzes")
 def quizzes():
+    # Retrieve all quizzes from the database
     quizzes = Quiz.query.all()
     return render_template('quizzes.html', quizzes=quizzes)
 
+# Route to display a specific quiz by ID, including its questions
 @app.route("/play_quiz/<int:quiz_id>")
 def play_quiz(quiz_id):
+    # Retrieve the quiz by ID
     quiz = Quiz.query.get(quiz_id)
     if not quiz:
         flash("Quiz not found.")
         return redirect(url_for('quizzes'))
 
+    # Retrieve all questions for the selected quiz
     questions = Question.query.filter_by(quiz_id=quiz_id).all()
+
+    # Set the initial question index (if no question index is specified in the URL)
     question_index = int(request.args.get('question_index', 0))
 
+    # Check if the question index is within the bounds of the question list
     if question_index < len(questions):
         current_question = questions[question_index]
     else:
-        return redirect(url_for('final_score', quiz_id=quiz_id))  # Redirect to the final score page
+        # Redirect to quiz list if all questions are answered
+        return redirect(url_for('final_score', quiz_id=quiz_id))  # New code to redirect to final_score.html
 
+    # Format the quiz data for display
     quiz_data = {
         'quiz_id': quiz.id,
         'title': quiz.title,
@@ -64,27 +71,12 @@ def play_quiz(quiz_id):
 
     return render_template("play_quiz.html", quiz=quiz_data, current_question=question_index)
 
-@app.route("/update_score", methods=["POST"])
-def update_score():
-    data = request.get_json()
-    increment = data.get("increment", 0)
-
-    # Accumulate the score in session
-    session["user_score"] = session.get("user_score", 0) + increment
-    return jsonify({"user_score": session["user_score"]})
-
 @app.route("/final_score/<int:quiz_id>")
 def final_score(quiz_id):
-<<<<<<< HEAD
     quiz = Quiz.query.get(quiz_id)
     total_questions = quiz.total_questions
     user_score = 0 # session.get('user_score', 0)  
 
-=======
-    total_questions = Question.query.filter_by(quiz_id=quiz_id).count()
-    user_score = session.get("user_score", 0)
-    session.pop("user_score", None)  # Clear the score after displaying it
->>>>>>> 447757fe99d972072256f07b858eef61aa1b46b0
     return render_template("final_score.html", user_score=user_score, total_questions=total_questions)
 
 @app.route("/login", methods=["GET", "POST"])
@@ -93,8 +85,10 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
+        # Try to find the user by username
         user = User.query.filter_by(username=username).first()
 
+        # Check if user exists and the password is correct
         if user and check_password_hash(user.password, password):
             session["user_id"] = user.id
             flash("Login successful")
@@ -105,6 +99,7 @@ def login():
 
     return render_template("login.html")
 
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
@@ -112,38 +107,48 @@ def signup():
         password = request.form['password']
         confirm_password = request.form['confirm_password']
 
+        # Check if passwords match
         if password != confirm_password:
             flash("Passwords do not match.")
             return redirect(url_for("signup"))
         
+        # Check for existing usernames
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash("Username already exists. Please choose another one.")
             return redirect(url_for("signup"))
 
+        # Register the new user with hashed password
         hashed_password = generate_password_hash(password)
         new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
+        # Log the user in automatically after successful signup
         session["user_id"] = new_user.id
         flash("Account created successfully! You are now logged in.")
         return redirect(url_for("home"))
 
     return render_template("signup.html")
 
+
 @app.route("/logout")
 def logout():
-    session.pop("user_id", None)
-    session.pop("user_score", None)  # Clear the score on logout
+    # Clears the session data.
+    session.pop("user_id", None)  
     flash("Successfully logged out.")
     return redirect(url_for("home"))
 
+
+# Show questions from the database as JSON for API access (optional)
 @app.route('/show_questions', methods=['GET'])
 def show_questions():
     questions = Question.query.all()
-    questions_data = [
-        {
+    
+    # Format the result as a list of dictionaries
+    questions_data = []
+    for question in questions:
+        questions_data.append({
             "id": question.id,
             "quiz_id": question.quiz_id,
             "question_text": question.question_text,
@@ -152,10 +157,11 @@ def show_questions():
             "option3": question.option3,
             "option4": question.option4,
             "correct_answer": question.correct_answer
-        }
-        for question in questions
-    ]
+        })
+    
+    # Return the data as JSON
     return jsonify(questions_data)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

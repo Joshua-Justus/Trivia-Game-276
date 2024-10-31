@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia 276 - Sign Up</title>
+    <link rel="stylesheet" href="static/main.css"> <!-- Link to external CSS file -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/" title="">Home</a>
+        <a href="/quizzes" title="">Quizzes</a>
+        {% if 'user_id' in session %}
+            <a href="/create_quiz" title="">Create a Quiz</a>
+            <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
+        {% else %}
+            <a href="/login" title="">Login</a>
+            <a class="active" href="/signup" title="">Create an Account</a>
+        {% endif %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Create an Account</h1>
+        </header>
+        
+        <div class="sign-up-container log-in-container"> <!-- Added log-in-container class -->
+            <div class="login-form-container"> <!-- Added login-form-container div -->
+                <form action="/signup" method="POST">
+                    <label for="signup-username">Username:</label>
+                    <input type="text" id="signup-username" name="username" required autocomplete="off">
+                    
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" name="password" required autocomplete="off">
+                    
+                    <label for="signup-confirm-password">Confirm Password:</label>
+                    <input type="password" id="signup-confirm-password" name="confirm_password" required autocomplete="off">
+                    
+                    <input type="submit" class="login-btn" value="Create Account"> <!-- Added class for styling -->
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
