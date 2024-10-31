@@ -15,8 +15,6 @@ db.init_app(app)
 # Register the blueprint with the app.
 app.register_blueprint(create_quiz_bp)
 
-with app.app_context():
-    db.create_all()
 
 @app.route("/")
 def home():
@@ -49,7 +47,7 @@ def play_quiz(quiz_id):
         current_question = questions[question_index]
     else:
         # Redirect to quiz list if all questions are answered
-        return redirect(url_for('quizzes'))
+        return redirect(url_for('final_score', quiz_id=quiz_id))  # New code to redirect to final_score.html
 
     # Format the quiz data for display
     quiz_data = {
@@ -70,6 +68,13 @@ def play_quiz(quiz_id):
     }
 
     return render_template("play_quiz.html", quiz=quiz_data, current_question=question_index)
+
+@app.route("/final_score/<int:quiz_id>")
+def final_score(quiz_id):
+    total_questions = Question.query.filter_by(quiz_id=quiz_id).count()
+    user_score = 0 # session.get('user_score', 0)  # Use session or another method to track score
+
+    return render_template("final_score.html", user_score=user_score, total_questions=total_questions)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
