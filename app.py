@@ -9,10 +9,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'cmpt_276_trivia'
 
-# Initialize the database with the app.
+# Initialize the database with the app
 db.init_app(app)
 
-# Register the blueprint with the app.
+# Register the blueprint with the app
 app.register_blueprint(create_quiz_bp)
 
 @app.route("/")
@@ -26,6 +26,10 @@ def quizzes():
 
 @app.route("/play_quiz/<int:quiz_id>")
 def play_quiz(quiz_id):
+    # Reset score at the beginning of each quiz
+    if "user_score" not in session:
+        session["user_score"] = 0
+
     quiz = Quiz.query.get(quiz_id)
     if not quiz:
         flash("Quiz not found.")
@@ -37,7 +41,7 @@ def play_quiz(quiz_id):
     if question_index < len(questions):
         current_question = questions[question_index]
     else:
-        return redirect(url_for('final_score', quiz_id=quiz_id))  # Redirect to the final score page
+        return redirect(url_for('final_score', quiz_id=quiz_id))  # Redirect to final score page
 
     quiz_data = {
         'quiz_id': quiz.id,
