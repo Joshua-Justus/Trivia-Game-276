@@ -74,8 +74,8 @@ def update_score():
 def final_score(quiz_id):
     quiz = Quiz.query.get(quiz_id)
     total_questions = quiz.total_questions
-    user_score = 0 # session.get('user_score', 0)  
-
+    user_score = session.get("user_score", 0)
+    session.pop("user_score", None)  # Clear the score after displaying it
     return render_template("final_score.html", user_score=user_score, total_questions=total_questions)
 
 @app.route("/login", methods=["GET", "POST"])
