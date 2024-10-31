@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Play Quiz - Trivia 276</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> <!-- Link to external CSS file -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}">
+    <script src="{{ url_for('static', filename='quiz.js') }}" defer></script>
 </head>
 
 <body>
@@ -25,11 +26,16 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <header>
-            <h1>{{ quiz.title }}</h1>
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="flex-grow: 1; text-align: center;">
+                <h1>{{ quiz.title }}</h1>
+            </div>
+            <div style="text-align: right; width: 250px; padding-right: 50px">
+                <p><strong>Time Remaining:</strong> <span id="timer" data-time-limit="{{ quiz.time_limit }}">{{ quiz.time_limit }}:00</span></p>
+            </div>
         </header>
 
-        <div class="quiz-container">
+        <div class="quiz-container" data-correct-answer="{{ quiz.current_question.correct_answer }}">
             <div class="question-box">
                 <h2>Question {{ current_question + 1 }}:</h2>
                 <p>{{ quiz.current_question.question_text }}</p>
@@ -57,40 +63,5 @@
             </div>
         </div>
     </div>
-
-    <!-- JavaScript to handle option selection and feedback -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const optionButtons = document.querySelectorAll(".option-btn");
-            const feedbackMessage = document.getElementById("feedback-message");
-            const correctAnswer = "{{ quiz.current_question.correct_answer }}";
-            const nextButtonForm = document.querySelector(".next-question form");
-    
-            optionButtons.forEach(button => {
-                button.addEventListener("click", () => {
-                    // Disable all option buttons after selection
-                    optionButtons.forEach(btn => btn.disabled = true);
-    
-                    // Check if selected option is correct
-                    if (button.getAttribute("data-option-id") === correctAnswer) {
-                        feedbackMessage.textContent = "Correct!";
-                        feedbackMessage.style.color = "green";
-                        button.classList.add("correct");
-
-                    } else {
-                        feedbackMessage.textContent = "Wrong answer!";
-                        feedbackMessage.style.color = "red";
-                        button.classList.add("incorrect");
-                        document.querySelector(`.option-btn[data-option-id="${correctAnswer}"]`).classList.add("correct");
-                    }
-    
-                    // Auto-submit the next question after a brief delay
-                    setTimeout(() => {
-                        nextButtonForm.submit();
-                    }, 1500); // 1.5-second delay to allow user to see feedback
-                });
-            });
-        });
-    </script>
 </body>
 </html>
