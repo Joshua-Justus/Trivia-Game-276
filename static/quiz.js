@@ -35,11 +35,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 feedbackMessage.style.color = "green";
                 button.classList.add("correct");
 
+                // Send score update to the server
+                fetch("/update_score", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ increment: 1 })  // Only increment if correct
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Score updated:", data.user_score);
+                })
+                .catch(error => console.error("Error updating score:", error));
+
             } else {
                 feedbackMessage.textContent = "Wrong answer!";
                 feedbackMessage.style.color = "red";
                 button.classList.add("incorrect");
-                // Mark the correct answer as green
                 document.querySelector(`.option-btn[data-option-id="${correctAnswer}"]`).classList.add("correct");
             }
 
