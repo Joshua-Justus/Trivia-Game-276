@@ -15,12 +15,9 @@ db.init_app(app)
 # Register the blueprint with the app.
 app.register_blueprint(create_quiz_bp)
 
-<<<<<<< HEAD
 with app.app_context():
     db.create_all()
 
-=======
->>>>>>> 447757fe99d972072256f07b858eef61aa1b46b0
 @app.route("/")
 def home():
     return render_template('base.html')
@@ -75,16 +72,10 @@ def update_score():
 
 @app.route("/final_score/<int:quiz_id>")
 def final_score(quiz_id):
-<<<<<<< HEAD
     quiz = Quiz.query.get(quiz_id)
     total_questions = quiz.total_questions
     user_score = 0 # session.get('user_score', 0)  
 
-=======
-    total_questions = Question.query.filter_by(quiz_id=quiz_id).count()
-    user_score = session.get("user_score", 0)
-    session.pop("user_score", None)  # Clear the score after displaying it
->>>>>>> 447757fe99d972072256f07b858eef61aa1b46b0
     return render_template("final_score.html", user_score=user_score, total_questions=total_questions)
 
 @app.route("/login", methods=["GET", "POST"])
