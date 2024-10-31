@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Play Quiz - Trivia 276</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}">
+    <script src="{{ url_for('static', filename='quiz.js') }}" defer></script>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/" title="">Home</a>
+        <a class="active" href="/quizzes" title="">Quizzes</a>
+        {% if 'user_id' in session %}
+            <a href="/create_quiz" title="">Create a Quiz</a>
+            <a href="/logout" title="">Log Out</a>
+        {% else %}
+            <a href="/login" title="">Login</a>
+            <a href="/signup" title="">Create an Account</a>
+        {% endif %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="flex-grow: 1; text-align: center;">
+                <h1>{{ quiz.title }}</h1>
+            </div>
+            <div style="text-align: right; width: 250px; padding-right: 50px">
+                <p><strong>Time Remaining:</strong> <span id="timer" data-time-limit="{{ quiz.time_limit }}">{{ quiz.time_limit }}:00</span></p>
+            </div>
+        </header>
+
+        <div class="quiz-container" data-correct-answer="{{ quiz.current_question.correct_answer }}">
+            <div class="question-box">
+                <h2>Question {{ current_question + 1 }}:</h2>
+                <p>{{ quiz.current_question.question_text }}</p>
+                
+                <ul class="options">
+                    {% for option_id, answer in quiz.current_question.options.items() %}
+                    <li>
+                        <button class="option-btn" data-option-id="{{ option_id }}">
+                            {{ answer }}
+                        </button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Feedback message placeholder -->
+            <div id="feedback-message" class="feedback"></div>
+
+            <!-- Next Question Button -->
+            <div class="next-question">
+                <form action="{{ url_for('play_quiz', quiz_id=quiz.quiz_id) }}" method="GET">
+                    <input type="hidden" name="question_index" value="{{ current_question + 1 }}">
+                    <button type="submit" class="next-btn">Next Question</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

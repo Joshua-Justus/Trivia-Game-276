@@ -1,0 +1,432 @@
+/* Base styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f0f4f8; /* Soft light background for contrast */
+}
+
+/* Style for the sidebar */
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    background: linear-gradient(180deg, #A6192E 0%, #9B0E26 100%); /* Gradient for sidebar */
+    padding-top: 20px;
+    position: fixed;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    transition: width 0.3s; /* Smooth transition for sidebar */
+    text-align: center; /* Center-align the text */
+}
+
+/* Header styles */
+h1 {
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: bold; /* Bold */
+    text-transform: uppercase; /* Uppercase */
+    letter-spacing: 1px; /* Letter spacing */
+    margin-bottom: 10px; /* Space below */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Text shadow */
+}
+
+/* Quiz titles */
+.quiz-title {
+    font-size: 1.8rem; /* Slightly larger */
+    font-weight: 600; /* Semi-bold */
+    margin-top: 0; /* No top margin */
+    color: #333; /* Darker color for visibility */
+}
+
+/* Sidebar link styles */
+.sidebar a {
+    padding: 15px 20px; /* Increased padding for a more button-like appearance */
+    text-decoration: none; /* Ensure no underline */
+    font-size: 18px;
+    color: white;
+    display: block;
+    margin: 5px 0;
+    border-radius: 8px; /* More rounded corners */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transition */
+}
+
+/* Sidebar hover effect */
+.sidebar a:hover {
+    background-color: #CC0633; /* SFU Light Red */
+    transform: translateY(-2px); /* Slightly lift on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Active link styling */
+.active {
+    background-color: #A6192E; /* SFU Dark Red */
+    font-weight: bold; /* Bold for active link */
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2); /* Inner shadow effect */
+}
+
+/* Responsive sidebar styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px; /* Adjusted width for mobile */
+    }
+
+    .sidebar a {
+        font-size: 16px; /* Smaller font for mobile */
+        padding: 10px; /* Less padding on mobile */
+    }
+
+    .sidebar:hover {
+        width: 120px; /* Expanded width on hover for mobile */
+    }
+}
+
+/* Main content styling */
+.main-content {
+    margin-left: 250px; /* Keeps the main content next to the sidebar */
+    padding: 20px;
+    flex-grow: 1;
+    animation: fadeIn 0.5s; /* Fade-in animation for main content */
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Header styles */
+header {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center align items horizontally */
+    align-items: center; /* Center align items vertically */
+    background: linear-gradient(to right, #A6192E, #CC0633); /* SFU Dark Red */
+    color: #fff;
+    padding: 20px 0; /* Padding for top and bottom */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for header */
+    width: 100%; /* Full width */
+}
+
+/* Login form container styles */
+.log-in-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Center the form vertically */
+}
+
+.login-form-container {
+    background-color: #fff; /* White background */
+    padding: 30px 40px; /* Increased padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0); /* Soft shadow */
+    max-width: 400px; /* Limit width */
+    width: 100%; /* Full width for smaller screens */
+}
+
+/* Form label styles */
+.login-form-container label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px; /* Space above labels */
+    display: block;
+}
+
+/* Input field styles */
+.login-form-container input[type="text"],
+.login-form-container input[type="password"] {
+    width: 94%;
+    padding: 12px; /* Increased padding for larger input fields */
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s; /* Smooth transition on focus */
+}
+
+.login-form-container input[type="text"]:focus,
+.login-form-container input[type="password"]:focus {
+    border-color: #A6192E; /* Highlight on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Submit button styles */
+.login-btn {
+    background-color: #CC0633; /* Primary button color */
+    color: white;
+    padding: 12px;
+    width: 100%; /* Full width */
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0); /* Button shadow */
+}
+
+.login-btn:hover {
+    background-color: #A6192E; /* Darker color on hover */
+}
+
+/* Quiz item styling */
+.quiz-item {
+    background-color: #fff; /* White background for quiz items */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for quiz items */
+    margin-bottom: 20px; /* Space between quiz items */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition effects */
+}
+
+.quiz-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Deep shadow on hover */
+}
+
+/* Quiz container styling */
+.quiz-container {
+    background-color: #fff; /* White background for quiz */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding around quiz content */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    margin: 20px auto; /* Center the container */
+    max-width: auto; /* Maximum width for larger screens */
+}
+
+/* Question box styling */
+.question-box {
+    margin-bottom: 20px; /* Space below the question */
+}
+
+.question-box h2 {
+    font-size: 24px; /* Larger font size for question */
+}
+
+/* Options styling */
+.options {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.option-btn {
+    background-color: #CC0633; /* Primary button color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners for buttons */
+    padding: 15px; /* Padding inside buttons */
+    font-size: 18px; /* Button text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    margin: 10px 0; /* Space between buttons */
+    width: 100%; /* Full width for buttons */
+}
+
+.option-btn:hover {
+    background-color: #A6192E; /* Darker shade on hover */
+}
+
+/* Next question button */
+.next-question {
+    text-align: right; /* Center the "Next Question" button */
+}
+
+.next-btn {
+    background-color: #28A745; /* Green button color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding inside button */
+    font-size: 18px; /* Button text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.next-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    background-color: #28A745; /* Green for buttons */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center; /* Center text in buttons */
+    transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
+}
+
+.btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Footer styles */
+footer {
+    background-color: #A6192E; /* SFU Dark Red */
+    color: white;
+    text-align: center;
+    padding: 10px 0; /* Padding for footer */
+    position: relative; /* Position for footer */
+    bottom: 0; /* Stick to the bottom */
+    width: 100%; /* Full width */
+}
+
+/* Mobile-friendly styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100px;
+    }
+
+    .main-content {
+        margin-left: 100px;
+    }
+
+    .quiz-item {
+        margin-bottom: 15px; /* Adjust margin for smaller screens */
+    }
+
+    .btn {
+        font-size: 14px; /* Smaller font for buttons */
+        padding: 8px 10px; /* Less padding on buttons */
+    }
+}
+
+/* Quiz form container styling */
+.quiz-form {
+    background-color: #fff; /* White background for contrast */
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto; /* Center the form */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Form labels */
+.quiz-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px; /* Space above labels */
+    color: #333; /* Darker text color */
+}
+
+/* Form input and textarea fields */
+.quiz-form input[type="text"],
+.quiz-form input[type="number"],
+.quiz-form textarea,
+.quiz-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Larger font size */
+    box-sizing: border-box;
+    transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+.quiz-form input[type="text"]:focus,
+.quiz-form input[type="number"]:focus,
+.quiz-form textarea:focus,
+.quiz-form select:focus {
+    border-color: #A6192E; /* Highlight color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Question block styling */
+.question-block {
+    padding: 15px;
+    margin-top: 20px;
+    border: 1px solid #eaeaea; /* Light border for each question */
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Slightly off-white background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+/* Question title */
+.question-block h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #A6192E; /* Primary color for questions */
+    margin-bottom: 10px;
+}
+
+/* Answer option styling */
+.answer-option {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.answer-option input[type="text"] {
+    flex: 1; /* Expand input field to take available space */
+    margin-left: 10px;
+}
+
+/* Submit button */
+.quiz-form button[type="submit"] {
+    background-color: #28A745; /* Primary button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-form button[type="submit"]:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Improve spacing between form sections */
+.quiz-form .form-section {
+    margin-bottom: 20px;
+}
+
+.log-in-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.sign-up-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+/* Correct and incorrect answer styles */
+.correct {
+    background-color: #28a745; /* Green for correct answer */
+    color: white;
+}
+
+.correct:hover {
+    background-color: #28a745; /* Green for correct answer */
+    color: white;
+}
+.incorrect {
+    background-color: #8B0000; /* Blood red for incorrect answer */
+    color: white;
+}
+
+.incorrect:hover {
+    background-color: #8B0000; /* Blood red for incorrect answer */
+    color: white;
+}
+
+.flash-messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0 20px; /* Adds 20px of space above and below the flash message */
+    text-align: center;
+}

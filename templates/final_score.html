@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz Results - Trivia 276</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/" title="">Home</a>
+        <a href="/quizzes" title="">Quizzes</a>
+        {% if 'user_id' in session %}
+            <a href="/create_quiz" title="">Create a Quiz</a>
+            <a href="/logout" title="">Log Out</a>
+        {% else %}
+            <a href="/login" title="">Login</a>
+            <a href="/signup" title="">Create an Account</a>
+        {% endif %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header style="text-align: center; padding: 20px;">
+            <h1>Quiz Completed</h1>
+        </header>
+
+        <div class="results-container" style="text-align: center; padding: 40px; border: 1px solid #e0e0e0; border-radius: 8px; max-width: 600px; margin: auto;">
+            <h2>Congratulations!</h2>
+            <p>Your quiz has ended.</p>
+            <p><strong>Your Score: {{ user_score }} / {{ total_questions }}</strong></p>
+
+            <div style="margin-top: 20px;">
+                <a href="/quizzes" class="btn">Back to Quizzes</a>
+                <a href="/" class="btn">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

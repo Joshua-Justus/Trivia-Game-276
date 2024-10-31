@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia 276 - Login</title>
+    <link rel="stylesheet" href="static/main.css"> <!-- Link to external CSS file -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}"> <!-- LOGO -->
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/" title="">Home</a>
+        <a href="/quizzes" title="">Quizzes</a>
+        {% if 'user_id' in session %}
+            <a href="/create_quiz" title="">Create a Quiz</a>
+            <a href="/logout" title="">Log Out</a>  <!-- Show Logout only when user is logged in -->
+        {% else %}
+            <a class="active" href="/login" title="">Login</a>
+            <a href="/signup" title="">Create an Account</a>
+        {% endif %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Log In</h1>
+        </header>
+
+       <div class="log-in-container">
+        <div class="login-form-container">
+            <form action="/login" method="POST">
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" name="username" required autocomplete="off">
+                
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" required autocomplete="off">
+
+                <!-- Flash message section: Shows what went right/wrong with the sign up. -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="flash-messages">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
+                
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
