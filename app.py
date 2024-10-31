@@ -5,11 +5,7 @@ from user import User
 from create_quiz import create_quiz_bp, Quiz, Question
 
 app = Flask(__name__)
-<<<<<<< HEAD
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/rushilsehgal/Library/CloudStorage/OneDrive-SimonFraserUniversity(1sfu)/Trivia-website/quiz.db'  # Database configuration
-=======
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
->>>>>>> 77363c8e0e019de9d1bc8ae80fb6afcd04ed9a5c
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'cmpt_276_trivia'
 
