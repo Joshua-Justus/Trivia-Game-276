@@ -12,6 +12,7 @@ class Quiz(db.Model):
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=False)
     time_limit = db.Column(db.Integer, nullable=False)  # Time limit in minutes
+    total_questions = db.Column(db.Integer, nullable=False)
 
 # Define the Question model to store questions for each quiz.
 class Question(db.Model):
@@ -51,7 +52,7 @@ def create_quiz():
     num_questions = int(request.form.get('num_questions'))
 
     # Create a new Quiz object and add it to the database.
-    new_quiz = Quiz(title=title, description=description, time_limit=int(time_limit))
+    new_quiz = Quiz(title=title, description=description, time_limit=int(time_limit), total_questions=int(num_questions))
     db.session.add(new_quiz)
     db.session.commit()
 

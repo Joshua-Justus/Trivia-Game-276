@@ -36,9 +36,7 @@ THINGS TO IMPROVE :
 
 • time management and planning
 
-RUNNING INSTRUCTIONS :
 
-Run the command "python app.py".
 
 FEATURES WE WANT FOR ITERATION 2 :
 
@@ -48,7 +46,24 @@ FEATURES WE WANT FOR ITERATION 2 :
 
 FEATURES COMPLETED FOR ITERATION 2 : 
 
-• 
+• creating a trivia game (locally)
 
-• 
+• playing a trivia game already created by developers
 
+ISSUES FIXED FROM ITERATION 1 TO ITERATION 2 :
+
+• completed game creation implementation
+
+• completed game playing implementation
+
+• better understanding of github and github commands (except in some cases) 
+
+FEATURES STILL LEFT : 
+
+• using a global database to store information (we currently are using a local sqlite database)
+
+• making the website more user friendly (addressing users upon logging in)
+
+RUNNING INSTRUCTIONS :
+
+Run the command "python app.py".
