@@ -132,7 +132,6 @@
         <div class="container">
             <p> This is the homepage for Trivia 276. Feel free to play different quizzes, create your own account, and create quizzes.</p>
         </div>
-        <br>
         <!-- Trivia Fact Tile -->
         <div class="trivia-tile">
             <h2>Did You Know?</h2>
@@ -145,18 +144,21 @@
                 <img src="{{ url_for('static', filename='images/football.jpg') }}" alt="Football Quiz">
                 <h3>Football Quiz</h3>
                 <p>Test your knowledge of football trivia!</p>
+                <br>
                 <a href="{{ url_for('play_quiz', quiz_id=5) }}" class="btn">Take the Quiz</a>
             </div>
             <div class="quiz-tile">
                 <img src="{{ url_for('static', filename='images/film.jpg') }}" alt="Film Quiz">
                 <h3>Film Quiz</h3>
                 <p>See how well you know films!</p>
+                <br>
                 <a href="{{ url_for('play_quiz', quiz_id=4) }}" class="btn">Take the Quiz</a>
             </div>
             <div class="quiz-tile">
                 <img src="{{ url_for('static', filename='images/anime.jpeg') }}" alt="Football Quiz">
                 <h3>Anime Quiz</h3>
                 <p>How much anime have you watched??</p>
+                <br>
                 <a href="{{ url_for('play_quiz', quiz_id=6) }}" class="btn">Take the Quiz</a>
             </div>
         </div>
