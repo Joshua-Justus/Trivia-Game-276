@@ -3,6 +3,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import db
 from user import User
 from create_quiz import create_quiz_bp, Quiz, Question
+from flask import render_template
+
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
@@ -150,3 +153,10 @@ def show_questions():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route('/quiz_results/<int:quiz_id>')
+def quiz_results(quiz_id):
+    # Replace with actual score and question count logic
+    user_score = 7
+    total_questions = 10
+    return render_template('quiz_results.html', user_score=user_score, total_questions=total_questions, quiz_id=quiz_id)

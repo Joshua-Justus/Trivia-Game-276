@@ -32,11 +32,30 @@
         <div class="results-container" style="text-align: center; padding: 40px; border: 1px solid #e0e0e0; border-radius: 8px; max-width: 600px; margin: auto;">
             <h2>Congratulations!</h2>
             <p>Your quiz has ended.</p>
-            <p><strong>Your Score: {{ user_score }} / {{ total_questions }}</strong></p>
 
+            <!-- Display user score -->
+            {% if total_questions > 0 %}
+                <p><strong>Your Score: {{ user_score }} / {{ total_questions }}</strong></p>
+                
+                <!-- Feedback based on score -->
+                {% if user_score / total_questions >= 0.8 %}
+                    <p>Excellent work! You're a trivia master!</p>
+                {% elif user_score / total_questions >= 0.5 %}
+                    <p>Good effort! Keep practicing to improve.</p>
+                {% else %}
+                    <p>Don't worry, you'll do better next time. Try another quiz!</p>
+                {% endif %}
+            {% else %}
+                <p><strong>No questions were answered, or the quiz had no questions.</strong></p>
+            {% endif %}
+
+            <!-- Action buttons -->
             <div style="margin-top: 20px;">
                 <a href="/quizzes" class="btn">Back to Quizzes</a>
                 <a href="/" class="btn">Return to Home</a>
+                {% if quiz_id %}
+                    <a href="{{ url_for('play_quiz', quiz_id=quiz_id) }}" class="btn">Retake Quiz</a>
+                {% endif %}
             </div>
         </div>
     </div>
