@@ -7,6 +7,108 @@
     <title>Trivia 276</title>
     <link rel="stylesheet" href="static/main.css">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/trivia-logo.png') }}">
+    <style>
+        /* Main content styling */
+        .main-content {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Trivia Fact Tile styling */
+        .trivia-tile {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+            border-left: 6px solid #A6192E;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: left;
+            font-family: 'Arial', sans-serif;
+            font-size: 1em;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .trivia-tile:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .trivia-tile h2 {
+            font-size: 1.4em;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: #A6192E;
+            font-weight: bold;
+        }
+
+        .trivia-tile p {
+            font-size: 1em;
+            color: #555555;
+            margin: 0;
+        }
+
+        /* Quiz Tiles styling */
+        .quiz-tiles {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .quiz-tile {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .quiz-tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-tile h3 {
+            font-size: 1.3em;
+            color: #A6192E;
+            margin-bottom: 10px;
+        }
+
+        .quiz-tile p {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #555555;
+        }
+
+        .quiz-tile a {
+            color: #ffffff;
+            background-color: #A6192E;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .quiz-tile a:hover {
+            background-color: #A6192E;
+            opacity: 0.8;
+        }
+
+        .quiz-tile img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
@@ -36,53 +138,25 @@
             <h2>Did You Know?</h2>
             <p id="trivia-text">Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old!</p>
         </div>
+
+        <!-- Quiz Tiles -->
+        <div class="quiz-tiles">
+            <div class="quiz-tile">
+                <img src="{{ url_for('static', filename='images/football.jpg') }}" alt="Football Quiz">
+                <h3>Football Quiz</h3>
+                <p>Test your knowledge of football trivia!</p>
+                <a href="/football_quiz">Take the Quiz</a>
+            </div>
+            <div class="quiz-tile">
+                <img src="{{ url_for('static', filename='images/film.jpg') }}" alt="Film Quiz">
+                <h3>Film Quiz</h3>
+                <p>See how well you know films!</p>
+                <a href="/film_quiz">Take the Quiz</a>
+            </div>
+        </div>
+        
     </div>
 
-    <style>
-        /* Main content styling */
-        .main-content {
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        /* Trivia Fact Tile styling */
-        .trivia-tile {
-            background-color: #ffffff; /* Soft yellow */
-            color: #333333; /* Dark gray for readability */
-            padding: 20px;
-            border-left: 6px solid #A6192E; /* Accent color */
-            border-radius: 10px;
-            max-width: 500px;
-            margin: 20px auto;
-            text-align: left;
-            font-family: 'Arial', sans-serif;
-            font-size: 1em;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-
-        .trivia-tile:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .trivia-tile h2 {
-            font-size: 1.4em;
-            margin-top: 5px; /* Increased space above the title */
-            margin-bottom: 5px;
-            color: #A6192E; /* Accent color for title */
-            font-weight: bold;
-        }
-
-        .trivia-tile p {
-            font-size: 1em;
-            color: #555555;
-            margin: 0;
-        }
-    </style>
-
-    <!-- JavaScript for Random Trivia Fact -->
     <script>
         const triviaFacts = [
             "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old!",
@@ -122,18 +196,12 @@
             "In a room of 23 people, there’s a 50% chance that two of them share the same birthday. This is known as the birthday paradox.",
             "The shortest commercial flight in the world is only 57 seconds long, connecting two islands in Scotland.",
             "There are more possible iterations of a game of chess than there are atoms in the known universe.",
-            "A jiffy is an actual unit of time, equivalent to 1/100th of a second.",
-            "The unicorn is the national animal of Scotland.",
-            "The name for the shape of Pringles is called a 'hyperbolic paraboloid.'",
-            "Dolphins have names for each other and use unique whistles to call specific individuals."
+            "The Eiffel Tower can grow taller by up to 6 inches in the summer due to expansion from heat."
         ];
 
-        function displayRandomTrivia() {
-            const randomTrivia = triviaFacts[Math.floor(Math.random() * triviaFacts.length)];
-            document.getElementById("trivia-text").innerText = randomTrivia;
-        }
-
-        window.onload = displayRandomTrivia;
+        const triviaTextElement = document.getElementById("trivia-text");
+        const randomTrivia = triviaFacts[Math.floor(Math.random() * triviaFacts.length)];
+        triviaTextElement.textContent = randomTrivia;
     </script>
 </body>
 </html>
