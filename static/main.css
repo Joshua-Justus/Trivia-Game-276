@@ -457,3 +457,63 @@ footer {
 .container p {
     font-size: 20px; /* Adjust the size as needed */
 }
+
+.search-form {
+    display: flex; /* Flexbox for alignment */
+    justify-content: flex-end; /* Align to the right */
+    align-items: center; /* Vertically align input and button */
+    margin-bottom: 20px; /* Space below the form */
+}
+
+.search-input {
+    width: 300px; /* Adjust width to desired size */
+    padding: 10px; /* Padding for consistent size with button */
+    border: 1px solid #ddd; /* Border styling */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    margin-right: 10px; /* Space between input and button */
+    box-sizing: border-box; /* Prevent overflow */
+    height: 42px; /* Match height to buttons */
+    transition: border-color 0.3s; /* Smooth focus effect */
+}
+
+.search-input:focus {
+    border-color: #A6192E; /* Red border on focus */
+    outline: none; /* Remove default focus outline */
+}
+
+.search-button {
+    background-color: #CC0633; /* Primary button color */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Button padding */
+    font-size: 16px; /* Button font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    margin-left: 10px; /* Small spacing to the left */
+}
+
+.search-button:hover {
+    background-color: #A6192E; /* Darker red on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+.show-all-button {
+    background-color: #28A745; /* Green button color */
+    color: white; /* White text */
+    padding: 10px 20px; /* Button padding */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    margin-left: 10px; /* Space between buttons */
+    display: inline-block; /* Button-like behavior */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+}
+
+.show-all-button:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect */
+}

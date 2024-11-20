@@ -27,11 +27,11 @@
     <header>
         <h1>Available Quizzes</h1>
     </header>
-    <form action="/quizzes" method="get">
-        <input type="text" name="q" placeholder="Search for quizzes..." value="{{ search_term or '' }}">
-        <button type="submit">Search</button>
+    <form action="/quizzes" method="get" class="search-form">
+        <input type="text" name="q" placeholder="Search for quizzes..." value="{{ search_term or '' }}" class="search-input">
+        <button type="submit" class="search-button">Search</button>
         {% if search_term %}
-        <a href="/quizzes">Show All Quizzes</a>
+        <a href="/quizzes" class="show-all-button">Show All Quizzes</a>
     {% endif %}
     </form>
     <div class="container">
