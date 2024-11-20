@@ -6,7 +6,7 @@ from create_quiz import create_quiz_bp, Quiz, Question
 from flask import render_template
 
 # ROOT PASSWORD = CMPT276 *Case sensitive*
-# Installed pymysql 
+# Installed pymysql and gunicorn
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:CMPT276@localhost/trivia_project'
