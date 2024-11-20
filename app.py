@@ -5,10 +5,11 @@ from user import User
 from create_quiz import create_quiz_bp, Quiz, Question
 from flask import render_template
 
-
+# ROOT PASSWORD = CMPT276 *Case sensitive*
+# Installed pymysql 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:CMPT276@localhost/trivia_project'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'cmpt_276_trivia'
 
@@ -37,7 +38,6 @@ def quizzes():
     else:
         # Fetch all quizzes if no search term is provided
         quizzes = Quiz.query.all()
-
     return render_template('quizzes.html', quizzes=quizzes, search_term=search_term)
 
 @app.route("/play_quiz/<int:quiz_id>")

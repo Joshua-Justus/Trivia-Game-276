@@ -41,7 +41,7 @@
                 <div class="quiz-item">
                     <h2 class="quiz-title">{{ quiz.title }}</h2>
                     <p class="quiz-description">{{ quiz.description }}</p>
-                    <p class="quiz-time-limit"><strong>Time Limit:</strong> {{ quiz.time_limit }} minutes</p>
+                    <p class="quiz-time-limit"><strong>Time Limit:</strong> {{ quiz.time_limit }} seconds per question</p>
                     <a href="{{ url_for('play_quiz', quiz_id=quiz.id) }}" class="btn">Play Quiz</a>
                 </div>
                 {% endfor %}

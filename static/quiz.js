@@ -5,13 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextButtonForm = document.querySelector(".next-question form");
     const timerElement = document.getElementById("timer");
 
-    let timeRemaining = parseInt(timerElement.getAttribute("data-time-limit")) * 60; // Convert minutes to seconds
+    // Get Time Limit
+    let timeRemaining = parseInt(timerElement.dataset.timeLimit, 10);
 
     function startTimer() {
         const timerInterval = setInterval(() => {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            timerElement.textContent = `${timeRemaining} seconds`;
             timeRemaining--;
 
             // If time runs out, submit the next question
