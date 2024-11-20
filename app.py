@@ -27,8 +27,18 @@ def home():
 
 @app.route("/quizzes")
 def quizzes():
-    quizzes = Quiz.query.all()
-    return render_template('quizzes.html', quizzes=quizzes)
+    search_term = request.args.get('q', '').strip()  # Get the search term from query parameters
+    if search_term:
+        # Filter quizzes by title or description
+        quizzes = Quiz.query.filter(
+            (Quiz.title.ilike(f"%{search_term}%")) |
+            (Quiz.description.ilike(f"%{search_term}%"))
+        ).all()
+    else:
+        # Fetch all quizzes if no search term is provided
+        quizzes = Quiz.query.all()
+
+    return render_template('quizzes.html', quizzes=quizzes, search_term=search_term)
 
 @app.route("/play_quiz/<int:quiz_id>")
 def play_quiz(quiz_id):
