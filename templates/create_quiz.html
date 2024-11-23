@@ -61,19 +61,19 @@
                 questionGroup.classList.add("question-group");
                 questionGroup.innerHTML = `
                     <label for="question${i}">Question ${i}</label>
-                    <input type="text" id="question${i}" name="question${i}" placeholder="Enter question ${i}" required>
+                    <input type="text" id="question${i}" name="question${i}" placeholder="Enter question ${i}" required autocomplete="off">
 
                     <label for="option${i}1">Option 1</label>
-                    <input type="text" id="option${i}1" name="option${i}1" placeholder="Enter option 1" required>
+                    <input type="text" id="option${i}1" name="option${i}1" placeholder="Enter option 1" required autocomplete="off">
 
                     <label for="option${i}2">Option 2</label>
-                    <input type="text" id="option${i}2" name="option${i}2" placeholder="Enter option 2" required>
+                    <input type="text" id="option${i}2" name="option${i}2" placeholder="Enter option 2" required autocomplete="off">
 
                     <label for="option${i}3">Option 3</label>
-                    <input type="text" id="option${i}3" name="option${i}3" placeholder="Enter option 3" required>
+                    <input type="text" id="option${i}3" name="option${i}3" placeholder="Enter option 3" required autocomplete="off">
 
                     <label for="option${i}4">Option 4</label>
-                    <input type="text" id="option${i}4" name="option${i}4" placeholder="Enter option 4" required>
+                    <input type="text" id="option${i}4" name="option${i}4" placeholder="Enter option 4" required autocomplete="off">
 
                     <label for="correct${i}">Correct Answer for Question ${i}</label>
                     <select id="correct${i}" name="correct${i}" required>
@@ -165,3 +165,4 @@
     </div>
 </body>
 </html>
+
